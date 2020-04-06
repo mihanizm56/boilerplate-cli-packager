@@ -1,6 +1,6 @@
 {
   "name": "@mihanizm56/cli-fun-react",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "boilerplate cli-executor",
   "scripts": {
     "lint": "npx eslint ./packager --ext .js --fix",
