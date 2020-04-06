@@ -7,7 +7,7 @@ const { exec } = require('./fs-promises');
 const fromFolder = path.join(
   process.cwd(),
   'node_modules',
-  '@@wildberries',
+  '@wildberries',
   'boilerplate-cli-packager',
   'lib',
 );
