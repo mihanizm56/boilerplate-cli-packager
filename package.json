@@ -1,14 +1,13 @@
 {
-  "name": "@mihanizm56/cli-fun-react",
-  "version": "0.0.2",
+  "name": "@wildberries/boilerplate-cli-packager",
+  "version": "0.0.1",
   "description": "boilerplate cli-executor",
   "scripts": {
-    "lint": "npx eslint ./packager --ext .js --fix",
+    "lint": "npx eslint ./config/packager --ext .js --fix",
     "commit": "git add . && git commit --no-edit",
     "pub": "npm publish --access=public",
     "size": "pkgfiles"
   },
-  "author": "mihanizm56",
   "license": "MIT",
   "dependencies": {
     "@mihanizm56/node-file-copier": "0.0.3",
@@ -42,10 +41,10 @@
   },
   "files": [
     "lib/",
-    "packager/",
+    "config/packager",
     "node_modules/@mihanizm56/node-file-copier/"
   ],
   "bin": {
-    "execute": "packager/index.js"
+    "execute": "config/packager/index.js"
   }
 }
