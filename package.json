@@ -1,6 +1,6 @@
 {
   "name": "@wildberries/boilerplate-cli-packager",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "description": "boilerplate cli-executor",
   "scripts": {
     "lint": "npx eslint ./config/packager --ext .js --fix",
@@ -44,7 +44,5 @@
     "config/packager",
     "node_modules/@mihanizm56/node-file-copier/"
   ],
-  "bin": {
-    "execute": "config/packager/index.js"
-  }
+  "bin": "config/packager/index.js"
 }

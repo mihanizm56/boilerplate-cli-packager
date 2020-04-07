@@ -12,7 +12,7 @@ const fromFolder = path.join(
   'lib',
 );
 
-const toFolder = path.join(process.cwd(), 'config');
+const toFolder = path.join(process.cwd(), 'cli');
 
 const arrayToCopy = [{ from: fromFolder, to: toFolder }];
 
