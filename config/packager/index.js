@@ -67,6 +67,8 @@ const runPackage = async () => {
     console.log('(cli): start install cli packages');
 
     await exec('npm install');
+
+    console.log('(cli): installed successfully');
   } catch (error) {
     console.log("error when executing the package", error); // eslint-disable-line
   }
