@@ -43,7 +43,7 @@ module.exports = {
       },
     ],
     'import/no-extraneous-dependencies': 0,
-    'no-console': ['error', { allow: ['error'] }],
+    'no-console': 0,
     quotes: ['error', 'single'],
     'function-paren-newline': 2,
     'consistent-return': 0,
