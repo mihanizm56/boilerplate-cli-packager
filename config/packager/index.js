@@ -50,13 +50,23 @@ const addPackageJsonCommands = async () => {
 
 const runPackage = async () => {
   try {
+    console.log('(cli): start to execute');
+
     await exec('npm install @wildberries/boilerplate-cli-packager');
 
+    console.log('(cli): start to copy');
+
     copier.activate();
+
+    console.log('(cli): start to patch package.json');
 
     await addPackageJsonCommands();
 
     await exec('npm uninstall @wildberries/boilerplate-cli-packager');
+
+    console.log('(cli): start install cli packages');
+
+    await exec('npm install');
   } catch (error) {
     console.log("error when executing the package", error); // eslint-disable-line
   }

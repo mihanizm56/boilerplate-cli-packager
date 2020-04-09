@@ -3,9 +3,6 @@
     "setup": "node ./cli/prepare-app/index.js",
     "wb": "node ./cli/command-app/index.js"
   },
-  "dependencies": {
-    "@wildberries/boilerplate-cli-packager":"0.0.5-beta.0"
-  },
   "devDependencies": {
     "import-jsx": "3.1.0",
     "ink": "2.7.0",
