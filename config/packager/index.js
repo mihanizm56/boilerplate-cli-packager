@@ -52,7 +52,7 @@ const runPackage = async () => {
   try {
     await addPackageJsonCommands();
 
-    await exec('npm install @wildberries/boilerplate-cli-packager');
+    // await exec('npm install @wildberries/boilerplate-cli-packager');
 
     copier.activate();
 
