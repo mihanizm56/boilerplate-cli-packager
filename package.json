@@ -5,7 +5,8 @@
   "scripts": {
     "lint": "npx eslint ./config/packager --ext .js --fix",
     "commit": "git add . && git commit --no-edit",
-    "pub": "npm publish --access=public",
+    "release": "npm publish --access=public",
+    "beta": "npm publish --tag beta --access=public",
     "size": "pkgfiles"
   },
   "license": "MIT",
