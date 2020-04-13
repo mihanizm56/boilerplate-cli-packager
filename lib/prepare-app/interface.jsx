@@ -51,7 +51,7 @@ class Interface extends React.Component {
 
     setProjectName(projectName);
 
-    installAdditionalPackages();
+    // installAdditionalPackages(); // if you need to do smth special =)
 
     makeEnvs([
       { label: 'REACT_APP_ROUTER_PREFIX', value: routerEnv },
