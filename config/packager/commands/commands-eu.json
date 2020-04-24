@@ -12,6 +12,5 @@
     "ink-select-input": "3.1.2",
     "ink-spinner": "3.0.1",
     "ink-text-input": "3.2.2"
-  },
-  "dependencies": {}
+  }
 }

@@ -7,7 +7,7 @@ module.exports.packageJsonPatch = async parameter => {
   try {
     const commandsFile = parameter === 'eu' ? commandsFileEU : commandsFileRU;
 
-    const { scripts, devDependencies, dependencies } = commandsFile;
+    const { scripts, devDependencies } = commandsFile;
 
     const packageJsonProjectFile = require(path.join(process.cwd(),'package.json')); // eslint-disable-line
 
@@ -17,14 +17,15 @@ module.exports.packageJsonPatch = async parameter => {
         ...packageJsonProjectFile.scripts,
         ...scripts,
       },
-      dependencies: {
-        ...packageJsonProjectFile.dependencies,
-        ...dependencies,
-      },
       devDependencies: {
         ...packageJsonProjectFile.devDependencies,
         ...devDependencies,
       },
+      // add if necessary to patch package.json with cli extra deps
+      // dependencies: {
+      //   ...packageJsonProjectFile.dependencies,
+      //   ...dependencies,
+      // }
     };
 
     await writeFile(
