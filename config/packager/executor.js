@@ -48,7 +48,7 @@ const runPackage = async () => {
 
     console.log('(cli): installed successfully');
   } catch (error) {
-    console.log("error when executing the package", error); // eslint-disable-line
+    console.log('error when executing the package', error);
   }
 };
 
