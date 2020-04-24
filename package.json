@@ -1,6 +1,6 @@
 {
   "name": "@wildberries/boilerplate-cli-packager",
-  "version": "0.0.20",
+  "version": "0.1.0",
   "description": "boilerplate cli-executor",
   "scripts": {
     "lint": "npx eslint ./config/packager --ext .js --fix",
@@ -18,7 +18,7 @@
   "devDependencies": {
     "@commitlint/cli": "8.2.0",
     "babel-eslint": "10.1.0",
-    "commitizen": "4.0.3",
+    "commitizen": "4.0.4",
     "cz-customizable": "6.2.0",
     "eslint": "6.8.0",
     "eslint-config-airbnb-base": "14.1.0",
@@ -45,5 +45,5 @@
     "config/packager",
     "node_modules/@mihanizm56/node-file-copier/"
   ],
-  "bin": "config/packager/index.js"
+  "bin": "config/packager/executor.js"
 }
