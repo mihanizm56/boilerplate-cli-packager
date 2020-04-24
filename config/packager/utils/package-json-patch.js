@@ -13,7 +13,10 @@ module.exports.packageJsonPatch = async parameter => {
 
     const newPackage = {
       ...packageJsonProjectFile,
-      scripts,
+      scripts: {
+        ...packageJsonProjectFile.scripts,
+        ...scripts,
+      },
       dependencies: {
         ...packageJsonProjectFile.dependencies,
         ...dependencies,
