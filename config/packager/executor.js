@@ -17,6 +17,7 @@ const fromFolder = path.join(
   'boilerplate-cli-packager',
   'lib',
   configParameter,
+  '/',
 );
 
 const toFolder = path.join(process.cwd(), 'cli');
@@ -28,7 +29,7 @@ const runPackage = async () => {
   try {
     console.log('(cli): start to execute');
 
-    await exec('npm install @wildberries/boilerplate-cli-packager');
+    await exec('npm install @wildberries/boilerplate-cli-packager@0.1.8');
 
     console.log('(cli): start to copy');
 
@@ -40,7 +41,7 @@ const runPackage = async () => {
 
     console.log('(cli): package.json patched successfuly');
 
-    await exec('npm uninstall @wildberries/boilerplate-cli-packager');
+    await exec('npm uninstall @wildberries/boilerplate-cli-packager@0.1.8');
   } catch (error) {
     console.log('error when executing the package', error);
   }
