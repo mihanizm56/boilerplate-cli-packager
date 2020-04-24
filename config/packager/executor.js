@@ -32,9 +32,7 @@ const runPackage = async () => {
   try {
     console.log('(cli): start to execute');
 
-    await exec(
-      'npm install @wildberries/boilerplate-cli-packager@0.1.0-beta.0',
-    );
+    await exec('npm install @wildberries/boilerplate-cli-packager');
 
     console.log('(cli): start to copy');
 
@@ -46,9 +44,7 @@ const runPackage = async () => {
 
     console.log('(cli): package.json patched successfuly');
 
-    await exec(
-      'npm uninstall @wildberries/boilerplate-cli-packager@0.1.0-beta.0',
-    );
+    await exec('npm uninstall @wildberries/boilerplate-cli-packager');
 
     console.log('(cli): start install cli packages');
 
