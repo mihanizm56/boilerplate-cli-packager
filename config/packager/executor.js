@@ -17,7 +17,6 @@ const fromFolder = path.join(
   'boilerplate-cli-packager',
   'lib',
   configParameter,
-  '/',
 );
 
 const toFolder = path.join(process.cwd(), 'cli');
