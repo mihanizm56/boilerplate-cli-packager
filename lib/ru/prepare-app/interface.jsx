@@ -4,6 +4,7 @@ const { UncontrolledTextInput } = require('ink-text-input');
 const BigText = require('ink-big-text');
 const { makeEnvs } = require('../_utils/make-envs');
 const { setProjectName } = require('../_utils/set-project-name');
+const { makeDockerFile } = require('../_utils/make-dockerfile');
 const {
   installAdditionalPackages,
 } = require('../_utils/install-additional-packages');
@@ -50,6 +51,8 @@ class Interface extends React.Component {
     const { routerEnv, ipLimitEnv, serverPortEnv, projectName } = this.state;
 
     setProjectName(projectName);
+
+    makeDockerFile(routerEnv);
 
     // installAdditionalPackages(); // if you need to do smth special =)
 

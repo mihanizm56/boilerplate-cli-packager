@@ -6,6 +6,7 @@ const { makeEnvs } = require('../_utils/make-envs');
 const {
   setPackageJsonFieldValue,
 } = require('../_utils/set-package-json-field');
+const { makeDockerFile } = require('../_utils/make-dockerfile');
 const {
   installAdditionalPackages,
 } = require('../_utils/install-additional-packages');
@@ -40,9 +41,7 @@ class Interface extends React.Component {
     const { routerEnv, projectName } = this.state;
 
     setPackageJsonFieldValue({ fieldName: 'name', fieldValue: projectName });
-    // setDockerfileEnvValues([
-    //   { label: 'REACT_APP_ROUTER_PREFIX', value: routerEnv },
-    // ]);
+    makeDockerFile(routerEnv);
 
     // installAdditionalPackages();
 
