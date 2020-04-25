@@ -16,7 +16,7 @@ class Interface extends React.Component {
     super();
 
     this.state = {
-      RepoName: '',
+      repoName: '',
       routerEnv: '',
       ipLimitEnv: '',
       serverPortEnv: '',
@@ -32,8 +32,8 @@ class Interface extends React.Component {
     this.handleExit = this.handleExit.bind(this);
   }
 
-  handleRepoName(RepoName) {
-    this.setState({ RepoName, step: 1 });
+  handleRepoName(repoName) {
+    this.setState({ repoName, step: 1 });
   }
 
   handleSetRouterEnv(routerEnv) {
@@ -87,7 +87,7 @@ class Interface extends React.Component {
   }
 
   render() {
-    const { step, routerEnv, ipLimitEnv, serverPortEnv, RepoName } = this.state;
+    const { step, routerEnv, ipLimitEnv, serverPortEnv, repoName } = this.state;
 
     return (
       <>
@@ -103,14 +103,17 @@ class Interface extends React.Component {
         </Box>
         <Box height={2} />
 
-        {RepoName && <Text bold>Repo name is {RepoName}</Text>}
+        {repoName && <Text bold>Repo name is {repoName}</Text>}
         {routerEnv && <Text bold>REACT_APP_ROUTER_PREFIX is {routerEnv}</Text>}
         {ipLimitEnv && <Text bold>IP_LIMIT is {ipLimitEnv}</Text>}
         {serverPortEnv && <Text bold>SERVER_PORT is {serverPortEnv}</Text>}
 
         {step === 0 && (
           <>
-            <Text bold>Введите название проекта: </Text>
+            <Text bold>
+              Введите название репозитория проекта: (например
+              suppliers-portal-react-boilerplate)
+            </Text>
             <UncontrolledTextInput onSubmit={this.handleRepoName} />
           </>
         )}
