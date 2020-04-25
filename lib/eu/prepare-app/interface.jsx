@@ -89,8 +89,10 @@ class Interface extends React.Component {
           <>
             <Text bold>
               Введите значение переменной среды для роутинга
-              (REACT_APP_ROUTER_PREFIX) ВНИМАНИЕ ВНИМАНИЕ ВНИМАНИЕ{' '}
-              {/** eslint-disable-line */}
+              (REACT_APP_ROUTER_PREFIX)
+            </Text>
+            <Text bold>!!!!!!!!!!!ВНИМАНИЕ ВНИМАНИЕ ВНИМАНИЕ!!!!!!!!!!!</Text>
+            <Text bold>
               Учтите, что для Российского портала необходимо, чтобы при одной
               странице без динамического роутинга - необходимо, чтобы переменная
               имела / на конце (например, /registration/)
