@@ -88,8 +88,12 @@ class Interface extends React.Component {
         {step === 1 && (
           <>
             <Text bold>
-              Введите значение переменной среды для роутинга, обязательно с
-              окончанием на / (REACT_APP_ROUTER_PREFIX)
+              Введите значение переменной среды для роутинга
+              (REACT_APP_ROUTER_PREFIX) ВНИМАНИЕ ВНИМАНИЕ ВНИМАНИЕ{' '}
+              {/** eslint-disable-line */}
+              Учтите, что для Российского портала необходимо, чтобы при одной
+              странице без динамического роутинга - необходимо, чтобы переменная
+              имела / на конце (например, /registration/)
             </Text>
             <UncontrolledTextInput onSubmit={this.handleSetRouterEnv} />
           </>
