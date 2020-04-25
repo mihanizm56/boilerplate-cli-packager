@@ -16,38 +16,46 @@ class Interface extends React.Component {
     super();
 
     this.state = {
-      projectName: '',
       routerEnv: '',
+      repoName: '',
+      deployTokenEnv: '',
       step: 0,
     };
 
     this.handleSetRouterEnv = this.handleSetRouterEnv.bind(this);
-    this.handleProjectName = this.handleProjectName.bind(this);
+    this.handleRepoName = this.handleRepoName.bind(this);
+    this.handleSetDeployTokenEnv = this.handleSetDeployTokenEnv.bind(this);
     this.finishSet = this.finishSet.bind(this);
     this.handleExit = this.handleExit.bind(this);
   }
 
-  handleProjectName(projectName) {
-    this.setState({ projectName, step: 1 });
+  handleRepoName(repoName) {
+    this.setState({ repoName, step: 1 });
   }
 
   handleSetRouterEnv(routerEnv) {
     this.setState({ routerEnv, step: 2 });
+  }
+
+  handleSetDeployTokenEnv(deployTokenEnv) {
+    this.setState({ deployTokenEnv, step: 3 });
 
     this.finishSet();
   }
 
   finishSet() {
-    const { routerEnv, projectName } = this.state;
+    const { routerEnv, repoName, deployTokenEnv } = this.state;
 
-    setPackageJsonFieldValue({ fieldName: 'name', fieldValue: projectName });
+    setPackageJsonFieldValue({ fieldName: 'name', fieldValue: repoName });
+
     makeDockerFile(routerEnv);
 
     // installAdditionalPackages();
 
     makeEnvs([
       { label: 'REACT_APP_ROUTER_PREFIX', value: routerEnv },
-      { label: 'PROJECT_NAME', value: projectName },
+      { label: 'DEPLOY_TOKEN', value: deployTokenEnv },
+      { label: 'REPO_NAME', value: repoName },
       { label: 'BROWSER', value: 'none' },
     ]);
 
@@ -59,7 +67,7 @@ class Interface extends React.Component {
   }
 
   render() {
-    const { step, projectName, routerEnv } = this.state;
+    const { step, repoName, routerEnv } = this.state;
 
     return (
       <>
@@ -74,21 +82,21 @@ class Interface extends React.Component {
           <Text bold>Предварительная настройка проекта</Text>
         </Box>
         <Box height={2} />
-
-        {projectName && <Text bold>Project name is {projectName}</Text>}
+        {repoName && <Text bold>Repo name is {repoName}</Text>}
         {routerEnv && <Text bold>REACT_APP_ROUTER_PREFIX is {routerEnv}</Text>}
-
         {step === 0 && (
           <>
-            <Text bold>Введите название проекта: </Text>
-            <UncontrolledTextInput onSubmit={this.handleProjectName} />
+            <Text bold>
+              Введите название репозитория проекта: (например
+              suppliers-portal-react-boilerplate)
+            </Text>
+            <UncontrolledTextInput onSubmit={this.handleRepoName} />
           </>
         )}
-
         {step === 1 && (
           <>
             <Text bold>
-              Введите значение переменной среды для роутинга
+              Введите значение префикса для первого роута
               (REACT_APP_ROUTER_PREFIX)
             </Text>
             <Text bold>!!!!!!!!!!!ВНИМАНИЕ ВНИМАНИЕ ВНИМАНИЕ!!!!!!!!!!!</Text>
@@ -98,6 +106,16 @@ class Interface extends React.Component {
               имела / на конце (например, /registration/)
             </Text>
             <UncontrolledTextInput onSubmit={this.handleSetRouterEnv} />
+          </>
+        )}
+        {step === 2 && (
+          <>
+            <Text bold>
+              Введите деплой токен (узнайте его у ответственных за деплой после
+              прочтения документации по деплою!!!) (DEPLOY_TOKEN)
+            </Text>
+
+            <UncontrolledTextInput onSubmit={this.handleSetDeployTokenEnv} />
           </>
         )}
       </>

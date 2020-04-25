@@ -3,7 +3,9 @@ const { Box, Text } = require('ink');
 const { UncontrolledTextInput } = require('ink-text-input');
 const BigText = require('ink-big-text');
 const { makeEnvs } = require('../_utils/make-envs');
-const { setProjectName } = require('../_utils/set-project-name');
+const {
+  setPackageJsonFieldValue,
+} = require('../_utils/set-package-json-field');
 const { makeDockerFile } = require('../_utils/make-dockerfile');
 const {
   installAdditionalPackages,
@@ -14,7 +16,7 @@ class Interface extends React.Component {
     super();
 
     this.state = {
-      projectName: '',
+      RepoName: '',
       routerEnv: '',
       ipLimitEnv: '',
       serverPortEnv: '',
@@ -24,13 +26,14 @@ class Interface extends React.Component {
     this.handleSetRouterEnv = this.handleSetRouterEnv.bind(this);
     this.handleSetIpLimit = this.handleSetIpLimit.bind(this);
     this.handleServerPort = this.handleServerPort.bind(this);
-    this.handleProjectName = this.handleProjectName.bind(this);
+    this.handleRepoName = this.handleRepoName.bind(this);
+    this.handleSetDeployTokenEnv = this.handleSetDeployTokenEnv.bind(this);
     this.finishSet = this.finishSet.bind(this);
     this.handleExit = this.handleExit.bind(this);
   }
 
-  handleProjectName(projectName) {
-    this.setState({ projectName, step: 1 });
+  handleRepoName(RepoName) {
+    this.setState({ RepoName, step: 1 });
   }
 
   handleSetRouterEnv(routerEnv) {
@@ -43,14 +46,24 @@ class Interface extends React.Component {
 
   handleServerPort(serverPortEnv) {
     this.setState({ serverPortEnv, step: 4 });
+  }
+
+  handleSetDeployTokenEnv(deployTokenEnv) {
+    this.setState({ deployTokenEnv, step: 5 });
 
     this.finishSet();
   }
 
   finishSet() {
-    const { routerEnv, ipLimitEnv, serverPortEnv, projectName } = this.state;
+    const {
+      routerEnv,
+      ipLimitEnv,
+      serverPortEnv,
+      repoName,
+      deployTokenEnv,
+    } = this.state;
 
-    setProjectName(projectName);
+    setPackageJsonFieldValue({ fieldName: 'name', fieldValue: repoName });
 
     makeDockerFile(routerEnv);
 
@@ -58,6 +71,8 @@ class Interface extends React.Component {
 
     makeEnvs([
       { label: 'REACT_APP_ROUTER_PREFIX', value: routerEnv },
+      { label: 'DEPLOY_TOKEN', value: deployTokenEnv },
+      { label: 'REPO_NAME', value: repoName },
       { label: 'SERVER_PORT', value: serverPortEnv },
       { label: 'IP_LIMIT', value: ipLimitEnv },
       { label: 'BROWSER', value: 'none' },
@@ -72,13 +87,7 @@ class Interface extends React.Component {
   }
 
   render() {
-    const {
-      step,
-      routerEnv,
-      ipLimitEnv,
-      serverPortEnv,
-      projectName,
-    } = this.state;
+    const { step, routerEnv, ipLimitEnv, serverPortEnv, RepoName } = this.state;
 
     return (
       <>
@@ -94,7 +103,7 @@ class Interface extends React.Component {
         </Box>
         <Box height={2} />
 
-        {projectName && <Text bold>Project name is {projectName}</Text>}
+        {RepoName && <Text bold>Repo name is {RepoName}</Text>}
         {routerEnv && <Text bold>REACT_APP_ROUTER_PREFIX is {routerEnv}</Text>}
         {ipLimitEnv && <Text bold>IP_LIMIT is {ipLimitEnv}</Text>}
         {serverPortEnv && <Text bold>SERVER_PORT is {serverPortEnv}</Text>}
@@ -102,7 +111,7 @@ class Interface extends React.Component {
         {step === 0 && (
           <>
             <Text bold>Введите название проекта: </Text>
-            <UncontrolledTextInput onSubmit={this.handleProjectName} />
+            <UncontrolledTextInput onSubmit={this.handleRepoName} />
           </>
         )}
 
@@ -138,6 +147,17 @@ class Interface extends React.Component {
               Введите порт для тестирования сервера статики (SERVER_PORT)
             </Text>
             <UncontrolledTextInput onSubmit={this.handleServerPort} />
+          </>
+        )}
+
+        {step === 4 && (
+          <>
+            <Text bold>
+              Введите деплой токен (узнайте его у ответственных за деплой после
+              прочтения документации по деплою!!!) (DEPLOY_TOKEN)
+            </Text>
+
+            <UncontrolledTextInput onSubmit={this.handleSetDeployTokenEnv} />
           </>
         )}
       </>
