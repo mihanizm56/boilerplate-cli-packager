@@ -137,16 +137,6 @@ class Interface extends React.PureComponent {
           </>
         )}
         {!commandName && <Text bold>Выберите команду</Text>}
-        {commandName && isLoading && (
-          <Box>
-            <Text bold>Выполняется команда: {commandName}</Text>
-            <Box width="100%">
-              <Color green>
-                <Spinner type="shark" />
-              </Color>
-            </Box>
-          </Box>
-        )}
         {!commandName && (
           <SelectInput
             items={commandsList}
