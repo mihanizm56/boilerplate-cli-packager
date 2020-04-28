@@ -3,13 +3,14 @@ const { Box, Text } = require('ink');
 const { UncontrolledTextInput } = require('ink-text-input');
 const BigText = require('ink-big-text');
 const { makeEnvs } = require('../_utils/make-envs');
+const { patchGitlabFile } = require('../_utils/patch-gitlab-file');
 const {
   setPackageJsonFieldValue,
 } = require('../_utils/set-package-json-field');
 const { makeDockerFile } = require('../_utils/make-dockerfile');
-const {
-  installAdditionalPackages,
-} = require('../_utils/install-additional-packages');
+// const {
+//   installAdditionalPackages,
+// } = require('../_utils/install-additional-packages');
 
 class Interface extends React.Component {
   constructor() {
@@ -54,7 +55,7 @@ class Interface extends React.Component {
     this.finishSet();
   }
 
-  finishSet() {
+  async finishSet() {
     const {
       routerEnv,
       ipLimitEnv,
@@ -64,6 +65,8 @@ class Interface extends React.Component {
     } = this.state;
 
     setPackageJsonFieldValue({ fieldName: 'name', fieldValue: repoName });
+
+    await patchGitlabFile(repoName);
 
     makeDockerFile(routerEnv);
 
