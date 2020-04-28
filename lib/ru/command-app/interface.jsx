@@ -20,6 +20,7 @@ const {
   OPEN_EXTRA_COMMANDS_VALUE,
   CLOSE_EXTRA_COMMANDS_VALUE,
   COMMIT_COMMAND_LABEL,
+  DOCKER_BUILD_COMMAND_LABEL,
 } = require('../_utils/cli-utils/_constants');
 
 class Interface extends React.PureComponent {
@@ -147,16 +148,19 @@ class Interface extends React.PureComponent {
           />
         )}
 
-        {commandName && commandName !== COMMIT_COMMAND_LABEL && isLoading && (
-          <Box>
-            <Text bold>Выполняется команда: {commandName}</Text>
-            <Box width="100%">
-              <Color green>
-                <Spinner type="shark" />
-              </Color>
+        {commandName &&
+          commandName !== COMMIT_COMMAND_LABEL &&
+          commandName !== DOCKER_BUILD_COMMAND_LABEL &&
+          isLoading && (
+            <Box>
+              <Text bold>Выполняется команда: {commandName}</Text>
+              <Box width="100%">
+                <Color green>
+                  <Spinner type="shark" />
+                </Color>
+              </Box>
             </Box>
-          </Box>
-        )}
+          )}
       </>
     );
   }
