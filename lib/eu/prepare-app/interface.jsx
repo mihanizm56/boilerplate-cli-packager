@@ -19,6 +19,7 @@ class Interface extends React.Component {
       routerEnv: '',
       repoName: '',
       deployTokenEnv: '',
+      projectEnv: '',
       step: 0,
     };
 
@@ -39,12 +40,16 @@ class Interface extends React.Component {
 
   handleSetDeployTokenEnv(deployTokenEnv) {
     this.setState({ deployTokenEnv, step: 3 });
+  }
+
+  handleSetProjectName(projectEnv) {
+    this.setState({ projectEnv, step: 4 });
 
     this.finishSet();
   }
 
   finishSet() {
-    const { routerEnv, repoName, deployTokenEnv } = this.state;
+    const { routerEnv, repoName, deployTokenEnv, projectEnv } = this.state;
 
     setPackageJsonFieldValue({ fieldName: 'name', fieldValue: repoName });
 
@@ -54,6 +59,7 @@ class Interface extends React.Component {
 
     makeEnvs([
       { label: 'REACT_APP_ROUTER_PREFIX', value: routerEnv },
+      { label: 'PROJECT_NAME', value: projectEnv },
       { label: 'DEPLOY_TOKEN', value: deployTokenEnv },
       { label: 'REPO_NAME', value: repoName },
       { label: 'BROWSER', value: 'none' },
@@ -67,7 +73,13 @@ class Interface extends React.Component {
   }
 
   render() {
-    const { step, repoName, routerEnv } = this.state;
+    const {
+      step,
+      repoName,
+      routerEnv,
+      deployTokenEnv,
+      projectEnv,
+    } = this.state;
 
     return (
       <>
@@ -83,7 +95,9 @@ class Interface extends React.Component {
         </Box>
         <Box height={2} />
         {repoName && <Text bold>Repo name is {repoName}</Text>}
+        {deployTokenEnv && <Text bold>Token is {deployTokenEnv}</Text>}
         {routerEnv && <Text bold>REACT_APP_ROUTER_PREFIX is {routerEnv}</Text>}
+        {projectEnv && <Text bold>PROJECT_NAME is {projectEnv}</Text>}
         {step === 0 && (
           <>
             <Text bold>
@@ -109,6 +123,16 @@ class Interface extends React.Component {
           </>
         )}
         {step === 2 && (
+          <>
+            <Text bold>
+              Введите деплой токен (узнайте его у ответственных за деплой после
+              прочтения документации по деплою!!!) (DEPLOY_TOKEN)
+            </Text>
+
+            <UncontrolledTextInput onSubmit={this.handleSetDeployTokenEnv} />
+          </>
+        )}
+        {step === 3 && (
           <>
             <Text bold>
               Введите деплой токен (узнайте его у ответственных за деплой после
