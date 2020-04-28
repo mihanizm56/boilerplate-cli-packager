@@ -159,8 +159,8 @@ class Interface extends React.Component {
         {step === 4 && (
           <>
             <Text bold>
-              Введите деплой токен (узнайте его у ответственных за деплой после
-              прочтения документации по деплою!!!) (DEPLOY_TOKEN)
+              Введите деплой токен (узнайте его при создании проекта в админке
+              cicd!!!) (DEPLOY_TOKEN)
             </Text>
 
             <UncontrolledTextInput onSubmit={this.handleSetDeployTokenEnv} />
