@@ -19,6 +19,7 @@ const {
   CLOSE_ADDITIONAL_COMMANDS_VALUE,
   OPEN_EXTRA_COMMANDS_VALUE,
   CLOSE_EXTRA_COMMANDS_VALUE,
+  COMMIT_COMMAND_LABEL,
 } = require('../_utils/cli-utils/_constants');
 
 class Interface extends React.PureComponent {
@@ -137,11 +138,23 @@ class Interface extends React.PureComponent {
           </>
         )}
         {!commandName && <Text bold>Выберите команду</Text>}
+
         {!commandName && (
           <SelectInput
             items={commandsList}
             onSelect={this.handleselectActActionion}
           />
+        )}
+
+        {commandName && commandName !== COMMIT_COMMAND_LABEL && isLoading && (
+          <Box>
+            <Text bold>Выполняется команда: {commandName}</Text>
+            <Box width="100%">
+              <Color green>
+                <Spinner type="shark" />
+              </Color>
+            </Box>
+          </Box>
         )}
       </>
     );
