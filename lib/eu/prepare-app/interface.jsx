@@ -26,6 +26,7 @@ class Interface extends React.Component {
     this.handleSetRouterEnv = this.handleSetRouterEnv.bind(this);
     this.handleRepoName = this.handleRepoName.bind(this);
     this.handleSetDeployTokenEnv = this.handleSetDeployTokenEnv.bind(this);
+    this.handleSetProjectName = this.handleSetProjectName.bind(this);
     this.finishSet = this.finishSet.bind(this);
     this.handleExit = this.handleExit.bind(this);
   }
@@ -139,7 +140,7 @@ class Interface extends React.Component {
               (PROJECT_NAME)
             </Text>
 
-            <UncontrolledTextInput onSubmit={this.handleSetDeployTokenEnv} />
+            <UncontrolledTextInput onSubmit={this.handleSetProjectName} />
           </>
         )}
       </>
