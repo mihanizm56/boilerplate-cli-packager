@@ -135,8 +135,8 @@ class Interface extends React.Component {
         {step === 3 && (
           <>
             <Text bold>
-              Введите деплой токен (узнайте его у ответственных за деплой после
-              прочтения документации по деплою!!!) (DEPLOY_TOKEN)
+              Введите название проекта в соответсвие с названием вкладки в меню
+              (PROJECT_NAME)
             </Text>
 
             <UncontrolledTextInput onSubmit={this.handleSetDeployTokenEnv} />
