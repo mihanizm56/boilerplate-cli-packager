@@ -1,13 +1,13 @@
-const React = require('react');
-const { Box, Text } = require('ink');
-const { UncontrolledTextInput } = require('ink-text-input');
-const BigText = require('ink-big-text');
-const { makeEnvs } = require('../_utils/make-envs');
-const { patchGitlabFile } = require('../_utils/patch-gitlab-file');
+const React = require("react");
+const { Box, Text } = require("ink");
+const { UncontrolledTextInput } = require("ink-text-input");
+const BigText = require("ink-big-text");
+const { makeEnvs } = require("../_utils/make-envs");
+const { patchGitlabFile } = require("../_utils/patch-gitlab-file");
 const {
   setPackageJsonFieldValue,
-} = require('../_utils/set-package-json-field');
-const { makeDockerFile } = require('../_utils/make-dockerfile');
+} = require("../_utils/set-package-json-field");
+const { makeDockerFile } = require("../_utils/make-dockerfile");
 // const {
 //   installAdditionalPackages,
 // } = require('../_utils/install-additional-packages');
@@ -17,10 +17,10 @@ class Interface extends React.Component {
     super();
 
     this.state = {
-      repoName: '',
-      routerEnv: '',
-      ipLimitEnv: '',
-      serverPortEnv: '',
+      repoName: "",
+      routerEnv: "",
+      ipLimitEnv: "",
+      serverPortEnv: "",
       step: 0,
     };
 
@@ -64,7 +64,7 @@ class Interface extends React.Component {
       deployTokenEnv,
     } = this.state;
 
-    setPackageJsonFieldValue({ fieldName: 'name', fieldValue: repoName });
+    setPackageJsonFieldValue({ fieldName: "name", fieldValue: repoName });
 
     await patchGitlabFile(repoName);
 
@@ -73,13 +73,13 @@ class Interface extends React.Component {
     // installAdditionalPackages(); // if you need to do smth special =)
 
     makeEnvs([
-      { label: 'REACT_APP_ROUTER_PREFIX', value: routerEnv },
-      { label: 'DEPLOY_TOKEN', value: deployTokenEnv },
-      { label: 'REPO_NAME', value: repoName },
-      { label: 'SERVER_PORT', value: serverPortEnv },
-      { label: 'IP_LIMIT', value: ipLimitEnv },
-      { label: 'BROWSER', value: 'none' },
-      { label: 'PUBLIC_URL', value: '/' },
+      { label: "REACT_APP_ROUTER_PREFIX", value: routerEnv },
+      { label: "DEPLOY_TOKEN", value: deployTokenEnv },
+      { label: "REPO_NAME", value: repoName },
+      { label: "SERVER_PORT", value: serverPortEnv },
+      { label: "IP_LIMIT", value: ipLimitEnv },
+      { label: "BROWSER", value: "none" },
+      { label: "PUBLIC_URL", value: "/" },
     ]);
 
     this.handleExit();
@@ -99,7 +99,7 @@ class Interface extends React.Component {
             text="WB React Boilerplate"
             font="chrome"
             backgroundColor="magenta"
-            colors={['white', 'white', 'white']}
+            colors={["white", "white", "white"]}
             space
           />
           <Text bold>Предварительная настройка проекта</Text>
@@ -117,22 +117,21 @@ class Interface extends React.Component {
               Введите название репозитория проекта: (например
               suppliers-portal-react-boilerplate)
             </Text>
+            <Text bold>ENV is REPO_NAME</Text>
             <UncontrolledTextInput onSubmit={this.handleRepoName} />
           </>
         )}
 
         {step === 1 && (
           <>
-            <Text bold>
-              Введите значение переменной среды для роутинга
-              (REACT_APP_ROUTER_PREFIX)
-            </Text>
+            <Text bold>Введите значение префикса для первого роута</Text>
             <Text bold>!!!!!!!!!!!ВНИМАНИЕ ВНИМАНИЕ ВНИМАНИЕ!!!!!!!!!!!</Text>
             <Text bold>
               Учтите, что для Российского портала необходимо, чтобы при одной
               странице без динамического роутинга - необходимо, чтобы переменная
               имела / на конце (например, /registration/)
             </Text>
+            <Text bold>ENV is REACT_APP_ROUTER_PREFIX</Text>
             <UncontrolledTextInput onSubmit={this.handleSetRouterEnv} />
           </>
         )}
@@ -141,8 +140,9 @@ class Interface extends React.Component {
           <>
             <Text bold>
               Введите значение числа запросов в секунду для тестирования сервера
-              статики (IP_LIMIT)
+              статики
             </Text>
+            <Text bold>ENV is IP_LIMIT</Text>
             <UncontrolledTextInput onSubmit={this.handleSetIpLimit} />
           </>
         )}
@@ -152,6 +152,7 @@ class Interface extends React.Component {
             <Text bold>
               Введите порт для тестирования сервера статики (SERVER_PORT)
             </Text>
+            <Text bold>ENV is SERVER_PORT</Text>
             <UncontrolledTextInput onSubmit={this.handleServerPort} />
           </>
         )}
@@ -160,9 +161,9 @@ class Interface extends React.Component {
           <>
             <Text bold>
               Введите деплой токен (узнайте его при создании проекта в админке
-              cicd!!!) (DEPLOY_TOKEN)
+              cicd!!!)
             </Text>
-
+            <Text bold>ENV is DEPLOY_TOKEN</Text>
             <UncontrolledTextInput onSubmit={this.handleSetDeployTokenEnv} />
           </>
         )}

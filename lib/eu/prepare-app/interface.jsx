@@ -1,13 +1,13 @@
-const React = require('react');
-const { Box, Text } = require('ink');
-const { UncontrolledTextInput } = require('ink-text-input');
-const BigText = require('ink-big-text');
-const { makeEnvs } = require('../_utils/make-envs');
+const React = require("react");
+const { Box, Text } = require("ink");
+const { UncontrolledTextInput } = require("ink-text-input");
+const BigText = require("ink-big-text");
+const { makeEnvs } = require("../_utils/make-envs");
 const {
   setPackageJsonFieldValue,
-} = require('../_utils/set-package-json-field');
-const { makeDockerFile } = require('../_utils/make-dockerfile');
-const { patchGitlabFile } = require('../_utils/patch-gitlab-file');
+} = require("../_utils/set-package-json-field");
+const { makeDockerFile } = require("../_utils/make-dockerfile");
+const { patchGitlabFile } = require("../_utils/patch-gitlab-file");
 // const {
 //   installAdditionalPackages,
 // } = require('../_utils/install-additional-packages');
@@ -17,10 +17,10 @@ class Interface extends React.Component {
     super();
 
     this.state = {
-      routerEnv: '',
-      repoName: '',
-      deployTokenEnv: '',
-      projectEnv: '',
+      routerEnv: "",
+      repoName: "",
+      deployTokenEnv: "",
+      projectEnv: "",
       step: 0,
     };
 
@@ -53,7 +53,7 @@ class Interface extends React.Component {
   async finishSet() {
     const { routerEnv, repoName, deployTokenEnv, projectEnv } = this.state;
 
-    setPackageJsonFieldValue({ fieldName: 'name', fieldValue: repoName });
+    setPackageJsonFieldValue({ fieldName: "name", fieldValue: repoName });
 
     makeDockerFile(routerEnv);
 
@@ -62,11 +62,11 @@ class Interface extends React.Component {
     // installAdditionalPackages();
 
     makeEnvs([
-      { label: 'REACT_APP_ROUTER_PREFIX', value: routerEnv },
-      { label: 'PROJECT_NAME', value: projectEnv },
-      { label: 'DEPLOY_TOKEN', value: deployTokenEnv },
-      { label: 'REPO_NAME', value: repoName },
-      { label: 'BROWSER', value: 'none' },
+      { label: "REACT_APP_ROUTER_PREFIX", value: routerEnv },
+      { label: "PROJECT_NAME", value: projectEnv },
+      { label: "DEPLOY_TOKEN", value: deployTokenEnv },
+      { label: "REPO_NAME", value: repoName },
+      { label: "BROWSER", value: "none" },
     ]);
 
     this.handleExit();
@@ -92,7 +92,7 @@ class Interface extends React.Component {
             text="WB React Boilerplate"
             font="chrome"
             backgroundColor="magenta"
-            colors={['white', 'white', 'white']}
+            colors={["white", "white", "white"]}
             space
           />
           <Text bold>Предварительная настройка проекта</Text>
@@ -108,21 +108,20 @@ class Interface extends React.Component {
               Введите название репозитория проекта: (например
               suppliers-portal-react-boilerplate)
             </Text>
+            <Text bold>ENV is REPO_NAME</Text>
             <UncontrolledTextInput onSubmit={this.handleRepoName} />
           </>
         )}
         {step === 1 && (
           <>
-            <Text bold>
-              Введите значение префикса для первого роута
-              (REACT_APP_ROUTER_PREFIX)
-            </Text>
+            <Text bold>Введите значение префикса для первого роута</Text>
             <Text bold>!!!!!!!!!!!ВНИМАНИЕ ВНИМАНИЕ ВНИМАНИЕ!!!!!!!!!!!</Text>
             <Text bold>
               Учтите, что для Российского портала необходимо, чтобы при одной
               странице без динамического роутинга - необходимо, чтобы переменная
               имела / на конце (например, /registration/)
             </Text>
+            <Text bold>ENV is REACT_APP_ROUTER_PREFIX</Text>
             <UncontrolledTextInput onSubmit={this.handleSetRouterEnv} />
           </>
         )}
@@ -130,9 +129,9 @@ class Interface extends React.Component {
           <>
             <Text bold>
               Введите деплой токен (узнайте его при создании проекта в админке
-              cicd!!!) (DEPLOY_TOKEN)
+              cicd!!!)
             </Text>
-
+            <Text bold>ENV is DEPLOY_TOKEN</Text>
             <UncontrolledTextInput onSubmit={this.handleSetDeployTokenEnv} />
           </>
         )}
@@ -140,9 +139,8 @@ class Interface extends React.Component {
           <>
             <Text bold>
               Введите название проекта в соответсвие с названием вкладки в меню
-              (PROJECT_NAME)
             </Text>
-
+            <Text bold>ENV is PROJECT_NAME</Text>
             <UncontrolledTextInput onSubmit={this.handleSetProjectName} />
           </>
         )}
