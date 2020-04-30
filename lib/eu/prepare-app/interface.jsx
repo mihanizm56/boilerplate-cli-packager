@@ -1,13 +1,13 @@
-const React = require("react");
-const { Box, Text } = require("ink");
-const { UncontrolledTextInput } = require("ink-text-input");
-const BigText = require("ink-big-text");
-const { makeEnvs } = require("../_utils/make-envs");
+const React = require('react');
+const { Box, Text } = require('ink');
+const { UncontrolledTextInput } = require('ink-text-input');
+const BigText = require('ink-big-text');
+const { makeEnvs } = require('../_utils/make-envs');
 const {
   setPackageJsonFieldValue,
-} = require("../_utils/set-package-json-field");
-const { makeDockerFile } = require("../_utils/make-dockerfile");
-const { patchGitlabFile } = require("../_utils/patch-gitlab-file");
+} = require('../_utils/set-package-json-field');
+const { makeDockerFile } = require('../_utils/make-dockerfile');
+const { patchGitlabFile } = require('../_utils/patch-gitlab-file');
 // const {
 //   installAdditionalPackages,
 // } = require('../_utils/install-additional-packages');
@@ -17,10 +17,10 @@ class Interface extends React.Component {
     super();
 
     this.state = {
-      routerEnv: "",
-      repoName: "",
-      deployTokenEnv: "",
-      projectEnv: "",
+      routerEnv: '',
+      repoName: '',
+      deployTokenEnv: '',
+      projectEnv: '',
       step: 0,
     };
 
@@ -53,20 +53,20 @@ class Interface extends React.Component {
   async finishSet() {
     const { routerEnv, repoName, deployTokenEnv, projectEnv } = this.state;
 
-    setPackageJsonFieldValue({ fieldName: "name", fieldValue: repoName });
+    setPackageJsonFieldValue({ fieldName: 'name', fieldValue: repoName });
 
-    makeDockerFile(routerEnv);
+    makeDockerFile();
 
     await patchGitlabFile(repoName);
 
     // installAdditionalPackages();
 
     makeEnvs([
-      { label: "REACT_APP_ROUTER_PREFIX", value: routerEnv },
-      { label: "PROJECT_NAME", value: projectEnv },
-      { label: "DEPLOY_TOKEN", value: deployTokenEnv },
-      { label: "REPO_NAME", value: repoName },
-      { label: "BROWSER", value: "none" },
+      { label: 'REACT_APP_ROUTER_PREFIX', value: routerEnv },
+      { label: 'PROJECT_NAME', value: projectEnv },
+      { label: 'DEPLOY_TOKEN', value: deployTokenEnv },
+      { label: 'REPO_NAME', value: repoName },
+      { label: 'BROWSER', value: 'none' },
     ]);
 
     this.handleExit();
@@ -92,7 +92,7 @@ class Interface extends React.Component {
             text="WB React Boilerplate"
             font="chrome"
             backgroundColor="magenta"
-            colors={["white", "white", "white"]}
+            colors={['white', 'white', 'white']}
             space
           />
           <Text bold>Предварительная настройка проекта</Text>
