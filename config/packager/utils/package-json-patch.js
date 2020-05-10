@@ -11,7 +11,14 @@ module.exports.packageJsonPatch = async parameter => {
 
     const newPackage = {
       ...packageJsonProjectFile,
-      ...commandsFile,
+      scripts: {
+        ...packageJsonProjectFile.scripts,
+        ...commandsFile.scripts,
+      },
+      devDependencies: {
+        ...packageJsonProjectFile.devDependencies,
+        ...commandsFile.devDependencies,
+      },
     };
 
     await writeFile(
