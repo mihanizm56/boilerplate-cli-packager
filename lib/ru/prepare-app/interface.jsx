@@ -1,13 +1,14 @@
-const React = require("react");
-const { Box, Text } = require("ink");
-const { UncontrolledTextInput } = require("ink-text-input");
-const BigText = require("ink-big-text");
-const { makeEnvs } = require("../_utils/make-envs");
-const { patchGitlabFile } = require("../_utils/patch-gitlab-file");
+const React = require('react');
+const { Box, Text } = require('ink');
+const { UncontrolledTextInput } = require('ink-text-input');
+const BigText = require('ink-big-text');
+const { makeEnvs } = require('../_utils/make-envs');
+const { patchGitlabFile } = require('../_utils/patch-gitlab-file');
 const {
   setPackageJsonFieldValue,
-} = require("../_utils/set-package-json-field");
-const { makeDockerFile } = require("../_utils/make-dockerfile");
+} = require('../_utils/set-package-json-field');
+const { makeDockerFile } = require('../_utils/make-dockerfile');
+const { makeNamespacei18next } = require('../_utils/make-namespace-i18next');
 // const {
 //   installAdditionalPackages,
 // } = require('../_utils/install-additional-packages');
@@ -17,10 +18,10 @@ class Interface extends React.Component {
     super();
 
     this.state = {
-      repoName: "",
-      routerEnv: "",
-      ipLimitEnv: "",
-      serverPortEnv: "",
+      repoName: '',
+      routerEnv: '',
+      ipLimitEnv: '',
+      serverPortEnv: '',
       step: 0,
     };
 
@@ -64,22 +65,24 @@ class Interface extends React.Component {
       deployTokenEnv,
     } = this.state;
 
-    setPackageJsonFieldValue({ fieldName: "name", fieldValue: repoName });
+    setPackageJsonFieldValue({ fieldName: 'name', fieldValue: repoName });
 
     await patchGitlabFile(repoName);
 
     makeDockerFile(routerEnv);
 
+    await makeNamespacei18next(repoName);
+
     // installAdditionalPackages(); // if you need to do smth special =)
 
     makeEnvs([
-      { label: "REACT_APP_ROUTER_PREFIX", value: routerEnv },
-      { label: "DEPLOY_TOKEN", value: deployTokenEnv },
-      { label: "REPO_NAME", value: repoName },
-      { label: "SERVER_PORT", value: serverPortEnv },
-      { label: "IP_LIMIT", value: ipLimitEnv },
-      { label: "BROWSER", value: "none" },
-      { label: "PUBLIC_URL", value: "/" },
+      { label: 'REACT_APP_ROUTER_PREFIX', value: routerEnv },
+      { label: 'DEPLOY_TOKEN', value: deployTokenEnv },
+      { label: 'REPO_NAME', value: repoName },
+      { label: 'SERVER_PORT', value: serverPortEnv },
+      { label: 'IP_LIMIT', value: ipLimitEnv },
+      { label: 'BROWSER', value: 'none' },
+      { label: 'PUBLIC_URL', value: '/' },
     ]);
 
     this.handleExit();
@@ -99,7 +102,7 @@ class Interface extends React.Component {
             text="WB React Boilerplate"
             font="chrome"
             backgroundColor="magenta"
-            colors={["white", "white", "white"]}
+            colors={['white', 'white', 'white']}
             space
           />
           <Text bold>Предварительная настройка проекта</Text>
@@ -115,7 +118,8 @@ class Interface extends React.Component {
           <>
             <Text bold>
               Введите название репозитория проекта: (например
-              suppliers-portal-react-boilerplate)
+              suppliers-portal-react-boilerplate) это же величина - будет
+              неймспейс проекта при деплое и при запросе за словарем
             </Text>
             <Text bold>ENV is REPO_NAME</Text>
             <UncontrolledTextInput onSubmit={this.handleRepoName} />

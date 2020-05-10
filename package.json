@@ -1,12 +1,12 @@
 {
   "name": "@wildberries/boilerplate-cli-packager",
-  "version": "0.1.47",
+  "version": "0.1.48",
   "description": "boilerplate cli-executor",
   "scripts": {
     "lint": "npx eslint ./config/packager --ext .js --fix",
     "commit": "git add . && git commit --no-edit",
-    "release": "npm publish --access=public",
-    "beta": "npm publish --tag beta --access=public",
+    "release": "npm run commit && npm publish --access=public",
+    "beta": "npm run commit && npm publish --tag beta --access=public",
     "size": "pkgfiles"
   },
   "license": "MIT",

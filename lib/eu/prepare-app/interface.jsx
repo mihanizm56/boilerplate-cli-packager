@@ -8,6 +8,7 @@ const {
 } = require('../_utils/set-package-json-field');
 const { makeDockerFile } = require('../_utils/make-dockerfile');
 const { patchGitlabFile } = require('../_utils/patch-gitlab-file');
+const { makeNamespacei18next } = require('../_utils/make-namespace-i18next');
 // const {
 //   installAdditionalPackages,
 // } = require('../_utils/install-additional-packages');
@@ -56,6 +57,8 @@ class Interface extends React.Component {
     setPackageJsonFieldValue({ fieldName: 'name', fieldValue: repoName });
 
     makeDockerFile();
+
+    await makeNamespacei18next(projectEnv);
 
     await patchGitlabFile(repoName);
 
