@@ -90,17 +90,32 @@ class Interface extends React.Component {
 
     return (
       <>
-        <Box width="100%">
-          <BigText
-            text="WB React Boilerplate"
-            font="chrome"
-            backgroundColor="magenta"
-            colors={['white', 'white', 'white']}
-            space
-          />
-          <Text bold>Предварительная настройка проекта</Text>
+        <Box flexDirection="column">
+          <Box width="100%" height={5}>
+            <BigText
+              text="Wildberries"
+              font="chrome"
+              align="center"
+              colors={['magenta', 'magenta', 'magenta']}
+            />
+          </Box>
+          <Box width="100%" height={6}>
+            <BigText
+              text="React Boilerplate v2.0"
+              font="chrome"
+              align="center"
+              colors={['magenta', 'magenta', 'magenta']}
+            />
+          </Box>
+          <Box width="100%" height={6}>
+            <BigText
+              text="Project-setup"
+              font="chrome"
+              align="center"
+              colors={['magenta', 'magenta', 'magenta']}
+            />
+          </Box>
         </Box>
-        <Box height={2} />
         {repoName && <Text bold>Repo name is {repoName}</Text>}
         {deployTokenEnv && <Text bold>Token is {deployTokenEnv}</Text>}
         {routerEnv && <Text bold>REACT_APP_ROUTER_PREFIX is {routerEnv}</Text>}

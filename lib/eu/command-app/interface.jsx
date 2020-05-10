@@ -124,19 +124,24 @@ class Interface extends React.PureComponent {
     return (
       <>
         {!isLoading && (
-          <>
-            <Box width="100%">
+          <Box flexDirection="column">
+            <Box width="100%" height={5}>
               <BigText
-                text="WB React Boilerplate"
+                text="Wildberries"
                 font="chrome"
-                backgroundColor="magenta"
-                lineHeight={0.1}
-                colors={['white', 'white', 'white']}
-                space
+                align="center"
+                colors={['magenta', 'magenta', 'magenta']}
               />
             </Box>
-            <Box height={2} />
-          </>
+            <Box width="100%" height={6}>
+              <BigText
+                text="React Boilerplate v2.0"
+                font="chrome"
+                align="center"
+                colors={['magenta', 'magenta', 'magenta']}
+              />
+            </Box>
+          </Box>
         )}
         {!commandName && <Text bold>Выберите команду</Text>}
 
