@@ -7,25 +7,11 @@ module.exports.packageJsonPatch = async parameter => {
   try {
     const commandsFile = parameter === 'eu' ? commandsFileEU : commandsFileRU;
 
-    const { scripts, devDependencies } = commandsFile;
-
     const packageJsonProjectFile = require(path.join(process.cwd(),'package.json')); // eslint-disable-line
 
     const newPackage = {
       ...packageJsonProjectFile,
-      scripts: {
-        ...packageJsonProjectFile.scripts,
-        ...scripts,
-      },
-      devDependencies: {
-        ...packageJsonProjectFile.devDependencies,
-        ...devDependencies,
-      },
-      // add if necessary to patch package.json with cli extra deps
-      // dependencies: {
-      //   ...packageJsonProjectFile.dependencies,
-      //   ...dependencies,
-      // }
+      ...commandsFile,
     };
 
     await writeFile(
