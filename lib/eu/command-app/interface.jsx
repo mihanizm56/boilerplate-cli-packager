@@ -19,9 +19,6 @@ const {
   CLOSE_ADDITIONAL_COMMANDS_VALUE,
   OPEN_EXTRA_COMMANDS_VALUE,
   CLOSE_EXTRA_COMMANDS_VALUE,
-  COMMIT_COMMAND_LABEL,
-  DOCKER_BUILD_COMMAND_LABEL,
-  NPM_VULNERABILITIES_COMMAND_LABEL,
 } = require('../_utils/cli-utils/_constants');
 
 class Interface extends React.PureComponent {
@@ -76,6 +73,7 @@ class Interface extends React.PureComponent {
       this.setState({
         commandName: label,
         isLoading: true,
+        isInteractiveScript,
       });
 
       const child = await scriptExecute({
@@ -122,7 +120,12 @@ class Interface extends React.PureComponent {
   }
 
   render() {
-    const { commandName, isLoading, commandsList } = this.state;
+    const {
+      commandName,
+      isLoading,
+      commandsList,
+      isInteractiveScript,
+    } = this.state;
 
     return (
       <>
@@ -155,20 +158,16 @@ class Interface extends React.PureComponent {
           />
         )}
 
-        {commandName &&
-          commandName !== COMMIT_COMMAND_LABEL &&
-          commandName !== DOCKER_BUILD_COMMAND_LABEL &&
-          commandName !== NPM_VULNERABILITIES_COMMAND_LABEL &&
-          isLoading && (
-            <Box>
-              <Text bold>Выполняется команда: {commandName}</Text>
-              <Box width="100%">
-                <Color green>
-                  <Spinner type="shark" />
-                </Color>
-              </Box>
+        {commandName && !isInteractiveScript && isLoading && (
+          <Box>
+            <Text bold>Выполняется команда: {commandName}</Text>
+            <Box width="100%">
+              <Color green>
+                <Spinner type="shark" />
+              </Color>
             </Box>
-          )}
+          </Box>
+        )}
       </>
     );
   }
