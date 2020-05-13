@@ -21,6 +21,7 @@ const {
   CLOSE_EXTRA_COMMANDS_VALUE,
   COMMIT_COMMAND_LABEL,
   DOCKER_BUILD_COMMAND_LABEL,
+  NPM_VULNERABILITIES_COMMAND_LABEL,
 } = require('../_utils/cli-utils/_constants');
 
 class Interface extends React.PureComponent {
@@ -57,6 +58,7 @@ class Interface extends React.PureComponent {
     type,
     isDetached,
     isCiScript,
+    isInteractiveScript,
   }) {
     if (value === OPEN_TEST_COMMANDS_VALUE) {
       this.handleOpenTestList();
@@ -82,6 +84,7 @@ class Interface extends React.PureComponent {
         type,
         isDetached,
         isCiScript,
+        isInteractiveScript,
       });
 
       this.childProcess = child;
@@ -156,6 +159,7 @@ class Interface extends React.PureComponent {
         {commandName &&
           commandName !== COMMIT_COMMAND_LABEL &&
           commandName !== DOCKER_BUILD_COMMAND_LABEL &&
+          commandName !== NPM_VULNERABILITIES_COMMAND_LABEL &&
           isLoading && (
             <Box>
               <Text bold>Выполняется команда: {commandName}</Text>
