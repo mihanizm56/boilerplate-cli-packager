@@ -11,11 +11,6 @@ const flags = getConsoleArgs(process.argv);
 
 const configFolderPrefix = getConfigFolderPrefix(flags);
 
-console.log(
-  'AAAAAAAAAAAAAAAAAAAAAAAAAaaconfigFolderPrefix',
-  configFolderPrefix,
-);
-
 const fromFolder = path.join(
   process.cwd(),
   'node_modules',
