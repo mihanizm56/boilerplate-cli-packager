@@ -3,6 +3,8 @@ const { writeFile } = require('./fs-promises');
 const { getCommandsPath } = require('./get-commands-path');
 
 module.exports.packageJsonPatch = async parameter => {
+  console.log('AAAAAAAAAAAAAAAAAAAAAAAAAaaparameter', parameter);
+
   try {
     // eslint-disable-next-line
     const commandsFile = require(getCommandsPath(parameter));
