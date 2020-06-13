@@ -5,10 +5,11 @@ const Copier = require('@mihanizm56/node-file-copier');
 const { exec } = require('./utils/fs-promises');
 const { getConsoleArgs } = require('./utils/get-args');
 const { packageJsonPatch } = require('./utils/package-json-patch');
+const { getConfigFolderPrefix } = require('./utils/get-config-folder-prefix');
 
 const flags = getConsoleArgs(process.argv);
 
-const configParameter = flags.euro ? 'eu' : 'ru';
+const configFolderPrefix = getConfigFolderPrefix(flags);
 
 const fromFolder = path.join(
   process.cwd(),
@@ -16,7 +17,7 @@ const fromFolder = path.join(
   '@wildberries',
   'boilerplate-cli-packager',
   'lib',
-  configParameter,
+  configFolderPrefix,
 );
 
 const toFolder = path.join(process.cwd(), 'cli');
@@ -36,7 +37,7 @@ const runPackage = async () => {
 
     console.log('(cli): start to patch package.json');
 
-    await packageJsonPatch(configParameter);
+    await packageJsonPatch(configFolderPrefix);
 
     console.log('(cli): package.json patched successfuly');
 

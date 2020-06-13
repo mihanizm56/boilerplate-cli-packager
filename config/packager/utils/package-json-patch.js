@@ -1,11 +1,11 @@
 const path = require('path');
-const commandsFileEU = require('../commands/commands-eu.json');
-const commandsFileRU = require('../commands/commands-ru.json');
 const { writeFile } = require('./fs-promises');
+const { getCommandsPath } = require('./get-commands-path');
 
 module.exports.packageJsonPatch = async parameter => {
   try {
-    const commandsFile = parameter === 'eu' ? commandsFileEU : commandsFileRU;
+    // eslint-disable-next-line
+    const commandsFile = require(getCommandsPath(parameter));
 
     const packageJsonProjectFile = require(path.join(process.cwd(),'package.json')); // eslint-disable-line
 
