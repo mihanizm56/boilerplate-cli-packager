@@ -9,6 +9,9 @@ module.exports.getCommandsPath = prefix => {
     case 'ru':
       return '../commands/commands-ru.json';
 
+    case 'pure':
+      return '../commands/commands-ru.json';
+
     default:
       return '../commands/commands-ru.json';
   }

@@ -10,14 +10,12 @@ const {
   mainCommands,
   testCommands,
   additionalCommands,
-  deployCommands,
 } = require('../_utils/cli-utils/npm-scripts');
 const {
   OPEN_TEST_COMMANDS_VALUE,
   CLOSE_TEST_COMMANDS_VALUE,
   OPEN_ADDITIONAL_COMMANDS_VALUE,
   CLOSE_ADDITIONAL_COMMANDS_VALUE,
-  OPEN_EXTRA_COMMANDS_VALUE,
   CLOSE_EXTRA_COMMANDS_VALUE,
 } = require('../_utils/cli-utils/_constants');
 
@@ -35,7 +33,6 @@ class Interface extends React.PureComponent {
     this.handleselectActActionion = this.handleselectActActionion.bind(this);
     this.handleOpenTestList = this.handleOpenTestList.bind(this);
     this.handleCloseList = this.handleCloseList.bind(this);
-    this.handleOpenExtraList = this.handleOpenExtraList.bind(this);
   }
 
   async componentWillUnmount() {
@@ -66,8 +63,6 @@ class Interface extends React.PureComponent {
       this.handleOpenAdditionalList();
     } else if (value === CLOSE_ADDITIONAL_COMMANDS_VALUE) {
       this.handleCloseList();
-    } else if (value === OPEN_EXTRA_COMMANDS_VALUE) {
-      this.handleOpenExtraList();
     } else if (value === CLOSE_EXTRA_COMMANDS_VALUE) {
       this.handleCloseList();
     } else {
@@ -109,14 +104,6 @@ class Interface extends React.PureComponent {
 
     this.setState({
       commandsList: mainCommands,
-    });
-  }
-
-  handleOpenExtraList() {
-    this.setState(() => ({ commandsList: [] }));
-
-    this.setState({
-      commandsList: deployCommands,
     });
   }
 

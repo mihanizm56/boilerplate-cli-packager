@@ -3,6 +3,10 @@ module.exports.getConfigFolderPrefix = flags => {
     return 'eu';
   }
 
+  if (flags.pure) {
+    return 'pure';
+  }
+
   if (flags.shared) {
     return 'shared';
   }
