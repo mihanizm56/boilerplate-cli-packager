@@ -32,11 +32,11 @@ class Interface extends React.Component {
   }
 
   async finishSet() {
-    const { repoName, namespace } = this.state;
+    const { repoName } = this.state;
 
     setPackageJsonFieldValue({ fieldName: 'name', fieldValue: repoName });
 
-    await makeNamespacei18next(namespace);
+    await makeNamespacei18next(repoName);
 
     // installAdditionalPackages(); // if you need to do smth special =)
 
