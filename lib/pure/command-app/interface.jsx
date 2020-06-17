@@ -39,8 +39,6 @@ class Interface extends React.PureComponent {
     if (Boolean(this.childProcess)) {
       process.kill(-this.childProcess.pid);
     }
-
-    await processKiller();
   }
 
   componentDidCatch(error) {
