@@ -183,8 +183,8 @@ class Interface extends React.Component {
               Введите название неймспейса проекта (узнайте его при создании
               проекта в админке cicd!!!)
             </Text>
-            <Text bold>ENV is PROJECT_NAME</Text>
-            <UncontrolledTextInput onSubmit={this.handleSetProjectName} />
+            <Text bold>ENV is NAMESPACE</Text>
+            <UncontrolledTextInput onSubmit={this.handleSetNamespace} />
           </>
         )}
       </>
