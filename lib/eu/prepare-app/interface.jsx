@@ -22,7 +22,6 @@ class Interface extends React.Component {
       repoName: '',
       deployTokenEnv: '',
       projectEnv: '',
-      namespace: '',
       step: 0,
     };
 
@@ -32,7 +31,6 @@ class Interface extends React.Component {
     this.handleSetProjectName = this.handleSetProjectName.bind(this);
     this.finishSet = this.finishSet.bind(this);
     this.handleExit = this.handleExit.bind(this);
-    this.handleSetNamespace = this.handleSetNamespace.bind(this);
   }
 
   handleRepoName(repoName) {
@@ -51,20 +49,8 @@ class Interface extends React.Component {
     this.setState({ projectEnv, step: 4 });
   }
 
-  handleSetNamespace(namespace) {
-    this.setState({ namespace, step: 5 });
-
-    this.finishSet();
-  }
-
   async finishSet() {
-    const {
-      routerEnv,
-      repoName,
-      deployTokenEnv,
-      projectEnv,
-      namespace,
-    } = this.state;
+    const { routerEnv, repoName, deployTokenEnv, projectEnv } = this.state;
 
     setPackageJsonFieldValue({ fieldName: 'name', fieldValue: repoName });
 
@@ -79,7 +65,6 @@ class Interface extends React.Component {
     makeEnvs([
       { label: 'REACT_APP_ROUTER_PREFIX', value: routerEnv },
       { label: 'PROJECT_NAME', value: projectEnv },
-      { label: 'NAMESPACE', value: namespace },
       { label: 'DEPLOY_TOKEN', value: deployTokenEnv },
       { label: 'REPO_NAME', value: repoName },
       { label: 'BROWSER', value: 'none' },
@@ -99,7 +84,6 @@ class Interface extends React.Component {
       routerEnv,
       deployTokenEnv,
       projectEnv,
-      namespace,
     } = this.state;
 
     return (
@@ -134,7 +118,6 @@ class Interface extends React.Component {
         {deployTokenEnv && <Text bold>Token is {deployTokenEnv}</Text>}
         {routerEnv && <Text bold>REACT_APP_ROUTER_PREFIX is {routerEnv}</Text>}
         {projectEnv && <Text bold>PROJECT_NAME is {projectEnv}</Text>}
-        {namespace && <Text bold>NAMESPACE is {namespace}</Text>}
         {step === 0 && (
           <>
             <Text bold>
@@ -175,16 +158,6 @@ class Interface extends React.Component {
             </Text>
             <Text bold>ENV is PROJECT_NAME</Text>
             <UncontrolledTextInput onSubmit={this.handleSetProjectName} />
-          </>
-        )}
-        {step === 4 && (
-          <>
-            <Text bold>
-              Введите название неймспейса проекта (узнайте его при создании
-              проекта в админке cicd!!!)
-            </Text>
-            <Text bold>ENV is NAMESPACE</Text>
-            <UncontrolledTextInput onSubmit={this.handleSetNamespace} />
           </>
         )}
       </>
