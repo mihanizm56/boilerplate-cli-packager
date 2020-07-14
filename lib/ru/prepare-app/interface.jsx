@@ -22,7 +22,7 @@ class Interface extends React.Component {
       routerEnv: '',
       ipLimitEnv: '',
       serverPortEnv: '',
-      namespace: '',
+      // namespace: '',
       step: 0,
     };
 
@@ -33,7 +33,7 @@ class Interface extends React.Component {
     this.handleSetDeployTokenEnv = this.handleSetDeployTokenEnv.bind(this);
     this.finishSet = this.finishSet.bind(this);
     this.handleExit = this.handleExit.bind(this);
-    this.handleSetNamespace = this.handleSetNamespace.bind(this);
+    // this.handleSetNamespace = this.handleSetNamespace.bind(this);
   }
 
   handleRepoName(repoName) {
@@ -54,13 +54,15 @@ class Interface extends React.Component {
 
   handleSetDeployTokenEnv(deployTokenEnv) {
     this.setState({ deployTokenEnv, step: 5 });
-  }
-
-  handleSetNamespace(namespace) {
-    this.setState({ namespace, step: 6 });
 
     this.finishSet();
   }
+
+  // handleSetNamespace(namespace) {
+  //   this.setState({ namespace, step: 6 });
+
+  //   this.finishSet();
+  // }
 
   async finishSet() {
     const {
@@ -69,7 +71,7 @@ class Interface extends React.Component {
       serverPortEnv,
       repoName,
       deployTokenEnv,
-      namespace,
+      // namespace,
     } = this.state;
 
     setPackageJsonFieldValue({ fieldName: 'name', fieldValue: repoName });
@@ -88,7 +90,7 @@ class Interface extends React.Component {
       { label: 'REPO_NAME', value: repoName },
       { label: 'SERVER_PORT', value: serverPortEnv },
       { label: 'IP_LIMIT', value: ipLimitEnv },
-      { label: 'NAMESPACE', value: namespace },
+      // { label: 'NAMESPACE', value: namespace },
       { label: 'BROWSER', value: 'none' },
       { label: 'PUBLIC_URL', value: '/' },
     ]);
@@ -194,7 +196,7 @@ class Interface extends React.Component {
           </>
         )}
 
-        {step === 5 && (
+        {/* {step === 5 && (
           <>
             <Text bold>
               Введите название неймспейса проекта (узнайте его при создании
@@ -203,7 +205,7 @@ class Interface extends React.Component {
             <Text bold>ENV is NAMESPACE</Text>
             <UncontrolledTextInput onSubmit={this.handleSetNamespace} />
           </>
-        )}
+        )} */}
       </>
     );
   }
