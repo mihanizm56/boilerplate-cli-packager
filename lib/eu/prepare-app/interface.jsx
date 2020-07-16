@@ -47,6 +47,8 @@ class Interface extends React.Component {
 
   handleSetProjectName(projectEnv) {
     this.setState({ projectEnv, step: 4 });
+
+    this.finishSet();
   }
 
   async finishSet() {
