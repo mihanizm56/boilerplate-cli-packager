@@ -34,6 +34,13 @@ class Interface extends React.Component {
     this.handleSetNamespace = this.handleSetNamespace.bind(this);
   }
 
+  static getDerivedStateFromProps(_, state) {
+    // eslint-disable-next-line no-console
+    console.clear();
+
+    return state;
+  }
+
   handleRepoName(repoName) {
     this.setState({ repoName, step: 1 });
   }
