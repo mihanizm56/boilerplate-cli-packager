@@ -20,6 +20,7 @@ const {
   OPEN_EXTRA_COMMANDS_VALUE,
   CLOSE_EXTRA_COMMANDS_VALUE,
 } = require('../_utils/cli-utils/_constants');
+const { cliRunLogger } = require('../_utils/loggers');
 
 class Interface extends React.PureComponent {
   constructor() {
@@ -70,6 +71,8 @@ class Interface extends React.PureComponent {
     } else if (value === CLOSE_EXTRA_COMMANDS_VALUE) {
       this.handleCloseList();
     } else {
+      cliRunLogger();
+
       this.setState({
         commandName: label,
         isLoading: true,
@@ -131,20 +134,20 @@ class Interface extends React.PureComponent {
       <>
         {!isLoading && (
           <Box flexDirection="column">
-            <Box width="100%" height={5}>
+            <Box height={5} width="100%">
               <BigText
-                text="Wildberries"
-                font="chrome"
                 align="center"
                 colors={['magenta', 'magenta', 'magenta']}
+                font="chrome"
+                text="Wildberries"
               />
             </Box>
-            <Box width="100%" height={6}>
+            <Box height={6} width="100%">
               <BigText
-                text="React Boilerplate v2.0"
-                font="chrome"
                 align="center"
                 colors={['magenta', 'magenta', 'magenta']}
+                font="chrome"
+                text="React Boilerplate v2.0"
               />
             </Box>
           </Box>
