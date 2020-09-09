@@ -20,3 +20,5 @@ npx npm-force-resolutions &&
 npm i
 
 npm run setup
+
+rm -rf temp.sh
