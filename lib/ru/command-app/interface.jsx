@@ -20,6 +20,7 @@ const {
   OPEN_EXTRA_COMMANDS_VALUE,
   CLOSE_EXTRA_COMMANDS_VALUE,
 } = require('../_utils/cli-utils/_constants');
+const { cliRunLogger } = require('../_utils/loggers');
 
 class Interface extends React.PureComponent {
   constructor() {
@@ -70,6 +71,8 @@ class Interface extends React.PureComponent {
     } else if (value === CLOSE_EXTRA_COMMANDS_VALUE) {
       this.handleCloseList();
     } else {
+      cliRunLogger();
+
       this.setState({
         commandName: label,
         isLoading: true,
