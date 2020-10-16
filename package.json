@@ -1,6 +1,6 @@
 {
   "name": "@wildberries/boilerplate-cli-packager",
-  "version": "0.1.137",
+  "version": "0.1.138",
   "description": "boilerplate cli-executor",
   "scripts": {
     "lint": "npx eslint ./config/packager --ext .js --fix",
@@ -12,8 +12,6 @@
   "license": "MIT",
   "dependencies": {
     "@mihanizm56/node-file-copier": "0.0.5",
-    "cli-progress": "3.8.2",
-    "colors": "1.4.0",
     "mkdirp-promise": "5.0.1",
     "util": "0.12.2"
   },
