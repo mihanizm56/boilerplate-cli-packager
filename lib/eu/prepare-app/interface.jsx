@@ -1,12 +1,16 @@
+/* eslint-disable no-console */
 const React = require('react');
 const { Box, Text } = require('ink');
 const { UncontrolledTextInput } = require('ink-text-input');
+const SelectInput = require('ink-select-input').default;
 const BigText = require('ink-big-text');
 const { makeEnvs } = require('../_utils/make-envs');
 const {
   setPackageJsonFieldValue,
 } = require('../_utils/set-package-json-field');
 const { makeNamespacei18next } = require('../_utils/make-namespace-i18next');
+const { makeNpmConfig } = require('../_utils/api-sdk/make-npm-config');
+const { makeSDKAPIConfig } = require('../_utils/api-sdk/make-sdk-api-config');
 // const {
 //   installAdditionalPackages,
 // } = require('../_utils/install-additional-packages');
@@ -17,33 +21,50 @@ class Interface extends React.Component {
 
     this.state = {
       projectName: '',
+      sdkApiPackages: '',
       step: 0,
     };
 
     this.handleSetProjectName = this.handleSetProjectName.bind(this);
+    this.handleSDKPackages = this.handleSDKPackages.bind(this);
+    this.handleChooseSDKUsage = this.handleChooseSDKUsage.bind(this);
     this.finishSet = this.finishSet.bind(this);
     this.handleExit = this.handleExit.bind(this);
   }
 
   static getDerivedStateFromProps(_, state) {
-    // eslint-disable-next-line no-console
     console.clear();
-
     return state;
+  }
+
+  handleChooseSDKUsage({ value: isUsing }) {
+    if (!isUsing) {
+      this.finishSet();
+    }
+
+    this.setState({ step: 2 });
   }
 
   handleSetProjectName(projectName) {
     this.setState({ projectName, step: 1 });
+  }
+
+  handleSDKPackages(sdkApiPackages) {
+    this.setState({ sdkApiPackages, step: 3 });
 
     this.finishSet();
   }
 
   async finishSet() {
-    const { projectName } = this.state;
+    const { projectName, sdkApiPackages } = this.state;
 
     setPackageJsonFieldValue({ fieldName: 'name', fieldValue: projectName });
 
     await makeNamespacei18next(projectName);
+    await makeNpmConfig();
+    if (sdkApiPackages) {
+      await makeSDKAPIConfig(sdkApiPackages);
+    }
 
     // installAdditionalPackages();
 
@@ -94,6 +115,28 @@ class Interface extends React.Component {
               Введите название проекта: (например ui-registration)
             </Text>
             <UncontrolledTextInput onSubmit={this.handleSetProjectName} />
+          </>
+        )}
+        {step === 1 && (
+          <>
+            <Text bold>Выберите, используется ли SDK-API на проекте ?</Text>
+            <SelectInput
+              items={[
+                { label: 'Нет', value: false },
+                { label: 'Да', value: true },
+              ]}
+              onSelect={this.handleChooseSDKUsage}
+            />
+          </>
+        )}
+
+        {step === 2 && (
+          <>
+            <Text bold>
+              Введите названия пакетов SDK-API, разделяя названия запятой:
+              (например @wildberries/test-sdk-api,react,react-dom)
+            </Text>
+            <UncontrolledTextInput onSubmit={this.handleSDKPackages} />
           </>
         )}
       </>
