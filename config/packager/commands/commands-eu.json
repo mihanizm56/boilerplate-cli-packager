@@ -12,6 +12,8 @@
     "ink-select-input": "3.1.2",
     "ink-spinner": "3.0.1",
     "ink-text-input": "3.2.2",
-    "js-yaml": "3.13.1"
+    "js-yaml": "3.13.1",
+    "enquirer": "2.3.6",
+    "listr2": "3.2.2"
   }
 }
