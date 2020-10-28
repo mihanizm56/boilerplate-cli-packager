@@ -9,8 +9,8 @@ const {
   setPackageJsonFieldValue,
 } = require('../_utils/set-package-json-field');
 const { makeNamespacei18next } = require('../_utils/make-namespace-i18next');
-const { makeNpmConfig } = require('../_utils/api-sdk/make-npm-config');
-const { makeSDKAPIConfig } = require('../_utils/api-sdk/make-sdk-api-config');
+const { makeNpmConfig } = require('../_utils/sdk-api/make-npm-config');
+const { makeSDKAPIConfig } = require('../_utils/sdk-api/make-sdk-api-config');
 // const {
 //   installAdditionalPackages,
 // } = require('../_utils/install-additional-packages');
@@ -34,6 +34,7 @@ class Interface extends React.Component {
 
   static getDerivedStateFromProps(_, state) {
     console.clear();
+
     return state;
   }
 
