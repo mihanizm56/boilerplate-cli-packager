@@ -6,8 +6,7 @@
     "lint": "npx eslint ./config/packager --ext .js --fix",
     "commit": "git add . && git commit --no-edit",
     "release": "npm link && npm run commit && git push && npm publish --access=public",
-    "beta": "npm link && npm run commit && git push && npm publish --tag beta --access=public",
-    "size": "pkgfiles"
+    "beta": "npm link && npm run commit && git push && npm publish --tag beta --access=public"
   },
   "license": "MIT",
   "dependencies": {
@@ -29,7 +28,6 @@
     "eslint-plugin-prettier": "3.1.1",
     "eslint-plugin-security": "1.4.0",
     "husky": "3.0.9",
-    "pkgfiles": "2.3.2",
     "prettier": "1.18.2"
   },
   "config": {
