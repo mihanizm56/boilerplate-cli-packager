@@ -62,8 +62,9 @@ class Interface extends React.Component {
     setPackageJsonFieldValue({ fieldName: 'name', fieldValue: projectName });
 
     await makeNamespacei18next(projectName);
-    await makeNpmConfig();
+
     if (sdkApiPackages) {
+      await makeNpmConfig();
       await makeSDKAPIConfig(sdkApiPackages);
     }
 
