@@ -36,8 +36,6 @@ class Interface extends React.Component {
 
     setPackageJsonFieldValue({ fieldName: 'name', fieldValue: repoName });
 
-    await makeNamespacei18next(repoName);
-
     // installAdditionalPackages(); // if you need to do smth special =)
 
     makeEnvs([
