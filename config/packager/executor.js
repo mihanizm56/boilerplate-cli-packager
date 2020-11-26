@@ -6,9 +6,6 @@ const { exec } = require('./utils/fs-promises');
 const { getConsoleArgs } = require('./utils/get-args');
 const { packageJsonPatch } = require('./utils/package-json-patch');
 const { getConfigFolderPrefix } = require('./utils/get-config-folder-prefix');
-const {
-  additionalPatchPackageJson,
-} = require('./utils/additional-patch-package-json');
 
 const flags = getConsoleArgs(process.argv);
 
@@ -30,9 +27,6 @@ const copier = new Copier({ arrayToCopy });
 
 const runPackage = async () => {
   try {
-    console.log('patching package.json');
-    await additionalPatchPackageJson();
-
     console.log('installing');
     await exec('npm install @wildberries/boilerplate-cli-packager');
 
