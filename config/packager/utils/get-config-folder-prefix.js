@@ -11,5 +11,9 @@ module.exports.getConfigFolderPrefix = flags => {
     return 'shared';
   }
 
+  if (flags.gatsby) {
+    return 'gatsby';
+  }
+
   return 'ru';
 };
