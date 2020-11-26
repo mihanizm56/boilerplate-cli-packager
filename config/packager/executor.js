@@ -29,8 +29,10 @@ const runPackage = async () => {
   try {
     await exec('npm install @wildberries/boilerplate-cli-packager');
 
+    console.log('generate files');
     copier.activate();
 
+    console.log('update package.json');
     await packageJsonPatch(configFolderPrefix);
 
     await exec('npm uninstall @wildberries/boilerplate-cli-packager');
