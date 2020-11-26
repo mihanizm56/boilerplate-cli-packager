@@ -27,6 +27,7 @@ const copier = new Copier({ arrayToCopy });
 
 const runPackage = async () => {
   try {
+    console.log('installing');
     await exec('npm install @wildberries/boilerplate-cli-packager');
 
     console.log('generate files');
@@ -35,6 +36,7 @@ const runPackage = async () => {
     console.log('update package.json');
     await packageJsonPatch(configFolderPrefix);
 
+    console.log('uninstalling');
     await exec('npm uninstall @wildberries/boilerplate-cli-packager');
   } catch (error) {
     console.log('error when executing the package', error);
