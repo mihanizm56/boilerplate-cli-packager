@@ -15,6 +15,9 @@ module.exports.getCommandsPath = prefix => {
     case 'gatsby':
       return '../commands/commands-gatsby.json';
 
+    case 'graphql':
+      return '../commands/commands-graphql.json';
+
     default:
       return '../commands/commands-ru.json';
   }

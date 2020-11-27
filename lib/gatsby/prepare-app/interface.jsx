@@ -1,16 +1,12 @@
-/* eslint-disable no-console */
 const React = require('react');
 const { Box, Text } = require('ink');
 const { UncontrolledTextInput } = require('ink-text-input');
-const SelectInput = require('ink-select-input').default;
 const BigText = require('ink-big-text');
 const { makeEnvs } = require('../_utils/make-envs');
 const {
   setPackageJsonFieldValue,
 } = require('../_utils/set-package-json-field');
 const { makeNamespacei18next } = require('../_utils/make-namespace-i18next');
-const { makeNpmConfig } = require('../_utils/sdk-api/make-npm-config');
-const { makeSDKAPIConfig } = require('../_utils/sdk-api/make-sdk-api-config');
 // const {
 //   installAdditionalPackages,
 // } = require('../_utils/install-additional-packages');
@@ -20,57 +16,32 @@ class Interface extends React.Component {
     super();
 
     this.state = {
-      projectName: '',
-      sdkApiPackages: '',
+      repoName: '',
       step: 0,
     };
 
-    this.handleSetProjectName = this.handleSetProjectName.bind(this);
-    this.handleSDKPackages = this.handleSDKPackages.bind(this);
-    this.handleChooseSDKUsage = this.handleChooseSDKUsage.bind(this);
+    this.handleRepoName = this.handleRepoName.bind(this);
     this.finishSet = this.finishSet.bind(this);
     this.handleExit = this.handleExit.bind(this);
   }
 
-  static getDerivedStateFromProps(_, state) {
-    console.clear();
-
-    return state;
-  }
-
-  handleChooseSDKUsage({ value: isUsing }) {
-    if (!isUsing) {
-      this.finishSet();
-    }
-
-    this.setState({ step: 2 });
-  }
-
-  handleSetProjectName(projectName) {
-    this.setState({ projectName, step: 1 });
-  }
-
-  handleSDKPackages(sdkApiPackages) {
-    this.setState({ sdkApiPackages, step: 3 });
+  handleRepoName(repoName) {
+    this.setState({ repoName, step: 1 });
 
     this.finishSet();
   }
 
   async finishSet() {
-    const { projectName, sdkApiPackages } = this.state;
+    const { repoName } = this.state;
 
-    setPackageJsonFieldValue({ fieldName: 'name', fieldValue: projectName });
+    setPackageJsonFieldValue({ fieldName: 'name', fieldValue: repoName });
 
-    await makeNamespacei18next(projectName);
+    // installAdditionalPackages(); // if you need to do smth special =)
 
-    if (sdkApiPackages) {
-      await makeNpmConfig();
-      await makeSDKAPIConfig(sdkApiPackages);
-    }
-
-    // installAdditionalPackages();
-
-    makeEnvs([{ label: 'BROWSER', value: 'none' }]);
+    makeEnvs([
+      { label: 'BROWSER', value: 'none' },
+      { label: 'PUBLIC_URL', value: '/' },
+    ]);
 
     this.handleExit();
   }
@@ -80,7 +51,7 @@ class Interface extends React.Component {
   }
 
   render() {
-    const { step, projectName } = this.state;
+    const { step, repoName } = this.state;
 
     return (
       <>
@@ -110,35 +81,17 @@ class Interface extends React.Component {
             />
           </Box>
         </Box>
-        {projectName && <Text bold>Project Name is {projectName}</Text>}
+        {repoName && <Text bold>REPO_NAME is {repoName}</Text>}
+
         {step === 0 && (
           <>
             <Text bold>
-              Введите название проекта: (например ui-registration)
+              Введите название репозитория проекта: (например
+              suppliers-portal-react-boilerplate) это же величина - будет
+              название проекта в wildberries ci/cd
             </Text>
-            <UncontrolledTextInput onSubmit={this.handleSetProjectName} />
-          </>
-        )}
-        {step === 1 && (
-          <>
-            <Text bold>Выберите, используется ли SDK-API на проекте ?</Text>
-            <SelectInput
-              items={[
-                { label: 'Нет', value: false },
-                { label: 'Да', value: true },
-              ]}
-              onSelect={this.handleChooseSDKUsage}
-            />
-          </>
-        )}
-
-        {step === 2 && (
-          <>
-            <Text bold>
-              Введите названия пакетов SDK-API, разделяя названия запятой:
-              (например @wildberries/test-sdk-api,react,react-dom)
-            </Text>
-            <UncontrolledTextInput onSubmit={this.handleSDKPackages} />
+            <Text bold>ENV is REPO_NAME</Text>
+            <UncontrolledTextInput onSubmit={this.handleRepoName} />
           </>
         )}
       </>
