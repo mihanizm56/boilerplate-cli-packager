@@ -19,5 +19,9 @@ module.exports.getConfigFolderPrefix = flags => {
     return 'graphql';
   }
 
+  if (flags.ssr) {
+    return 'ssr';
+  }
+
   return 'ru';
 };
