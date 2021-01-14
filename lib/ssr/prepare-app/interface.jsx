@@ -2,7 +2,6 @@ const React = require('react');
 const { Box, Text } = require('ink');
 const { UncontrolledTextInput } = require('ink-text-input');
 const BigText = require('ink-big-text');
-const { patchGitlabFile } = require('../_utils/patch-gitlab-file');
 const { makeEnvs } = require('../_utils/make-envs');
 const {
   setPackageJsonFieldValue,
@@ -18,47 +17,28 @@ class Interface extends React.Component {
 
     this.state = {
       repoName: '',
-      deployTokenEnv: '',
-      namespace: '',
       step: 0,
     };
 
     this.handleRepoName = this.handleRepoName.bind(this);
-    this.handleSetDeployTokenEnv = this.handleSetDeployTokenEnv.bind(this);
-    this.handleSetNamespace = this.handleSetNamespace.bind(this);
     this.finishSet = this.finishSet.bind(this);
     this.handleExit = this.handleExit.bind(this);
   }
 
   handleRepoName(repoName) {
     this.setState({ repoName, step: 1 });
-  }
-
-  handleSetDeployTokenEnv(deployTokenEnv) {
-    this.setState({ deployTokenEnv, step: 2 });
-  }
-
-  handleSetNamespace(namespace) {
-    this.setState({ namespace, step: 3 });
 
     this.finishSet();
   }
 
   async finishSet() {
-    const { repoName, deployTokenEnv, namespace } = this.state;
+    const { repoName } = this.state;
 
     setPackageJsonFieldValue({ fieldName: 'name', fieldValue: repoName });
-
-    await patchGitlabFile(repoName);
-
-    await makeNamespacei18next(namespace);
 
     // installAdditionalPackages(); // if you need to do smth special =)
 
     makeEnvs([
-      { label: 'DEPLOY_TOKEN', value: deployTokenEnv },
-      { label: 'REPO_NAME', value: repoName },
-      { label: 'NAMESPACE', value: namespace },
       { label: 'BROWSER', value: 'none' },
       { label: 'PUBLIC_URL', value: '/' },
     ]);
@@ -71,7 +51,7 @@ class Interface extends React.Component {
   }
 
   render() {
-    const { step, deployTokenEnv, repoName, namespace } = this.state;
+    const { step, repoName } = this.state;
 
     return (
       <>
@@ -102,8 +82,6 @@ class Interface extends React.Component {
           </Box>
         </Box>
         {repoName && <Text bold>REPO_NAME is {repoName}</Text>}
-        {deployTokenEnv && <Text bold>DEPLOY_TOKEN is {deployTokenEnv}</Text>}
-        {namespace && <Text bold>NAMESPACE is {namespace}</Text>}
 
         {step === 0 && (
           <>
@@ -114,25 +92,6 @@ class Interface extends React.Component {
             </Text>
             <Text bold>ENV is REPO_NAME</Text>
             <UncontrolledTextInput onSubmit={this.handleRepoName} />
-          </>
-        )}
-
-        {step === 1 && (
-          <>
-            <Text bold>
-              Введите деплой токен (узнайте его при создании проекта в админке
-              ci/cd!!!)
-            </Text>
-            <Text bold>ENV is DEPLOY_TOKEN</Text>
-            <UncontrolledTextInput onSubmit={this.handleSetDeployTokenEnv} />
-          </>
-        )}
-
-        {step === 2 && (
-          <>
-            <Text bold>Введите неймспейс приложения в wildberries ci/cd</Text>
-            <Text bold>ENV is NAMESPACE</Text>
-            <UncontrolledTextInput onSubmit={this.handleSetNamespace} />
           </>
         )}
       </>
