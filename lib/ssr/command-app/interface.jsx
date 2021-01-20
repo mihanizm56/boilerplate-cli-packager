@@ -9,6 +9,8 @@ const { processKiller } = require('../_utils/cli-utils/process-killer');
 const {
   mainCommands,
   testCommands,
+  additionalCommands,
+  extraCommands,
 } = require('../_utils/cli-utils/npm-scripts');
 const {
   OPEN_TEST_COMMANDS_VALUE,
@@ -33,6 +35,7 @@ class Interface extends React.PureComponent {
     this.handleselectActActionion = this.handleselectActActionion.bind(this);
     this.handleOpenTestList = this.handleOpenTestList.bind(this);
     this.handleCloseList = this.handleCloseList.bind(this);
+    this.handleOpenExtraList = this.handleOpenExtraList.bind(this);
   }
 
   async componentWillUnmount() {
@@ -58,6 +61,14 @@ class Interface extends React.PureComponent {
     if (value === OPEN_TEST_COMMANDS_VALUE) {
       this.handleOpenTestList();
     } else if (value === CLOSE_TEST_COMMANDS_VALUE) {
+      this.handleCloseList();
+    } else if (value === OPEN_ADDITIONAL_COMMANDS_VALUE) {
+      this.handleOpenAdditionalList();
+    } else if (value === CLOSE_ADDITIONAL_COMMANDS_VALUE) {
+      this.handleCloseList();
+    } else if (value === OPEN_EXTRA_COMMANDS_VALUE) {
+      this.handleOpenExtraList();
+    } else if (value === CLOSE_EXTRA_COMMANDS_VALUE) {
       this.handleCloseList();
     } else {
       cliRunLogger();
@@ -87,11 +98,27 @@ class Interface extends React.PureComponent {
     });
   }
 
+  handleOpenAdditionalList() {
+    this.setState(() => ({ commandsList: [] }));
+
+    this.setState({
+      commandsList: additionalCommands,
+    });
+  }
+
   handleCloseList() {
     this.setState(() => ({ commandsList: [] }));
 
     this.setState({
       commandsList: mainCommands,
+    });
+  }
+
+  handleOpenExtraList() {
+    this.setState(() => ({ commandsList: [] }));
+
+    this.setState({
+      commandsList: extraCommands,
     });
   }
 
