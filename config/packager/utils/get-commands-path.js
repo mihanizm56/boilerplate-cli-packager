@@ -10,7 +10,7 @@ module.exports.getCommandsPath = prefix => {
       return '../commands/commands-ru.json';
 
     case 'pure':
-      return '../commands/commands-ru.json';
+      return '../commands/commands-pure.json';
 
     case 'gatsby':
       return '../commands/commands-gatsby.json';
