@@ -20,6 +20,7 @@ const {
   OPEN_EXTRA_COMMANDS_VALUE,
   CLOSE_EXTRA_COMMANDS_VALUE,
 } = require('../_utils/cli-utils/_constants');
+const { cliRunLogger } = require('../_utils/loggers');
 
 class Interface extends React.PureComponent {
   constructor() {
@@ -29,7 +30,6 @@ class Interface extends React.PureComponent {
       commandName: '',
       commandsList: mainCommands,
       isLoading: false,
-      withLoader: false,
     };
 
     this.handleselectActActionion = this.handleselectActActionion.bind(this);
@@ -54,9 +54,9 @@ class Interface extends React.PureComponent {
     label,
     value,
     type,
-    isIOInherit,
+    isDetached,
     isCiScript,
-    withLoader,
+    isInteractiveScript,
   }) {
     if (value === OPEN_TEST_COMMANDS_VALUE) {
       this.handleOpenTestList();
@@ -71,19 +71,21 @@ class Interface extends React.PureComponent {
     } else if (value === CLOSE_EXTRA_COMMANDS_VALUE) {
       this.handleCloseList();
     } else {
+      cliRunLogger();
+
       this.setState({
         commandName: label,
         isLoading: true,
-        withLoader,
+        isInteractiveScript,
       });
 
       const child = await scriptExecute({
         label,
         value,
         type,
-        isIOInherit,
+        isDetached,
         isCiScript,
-        withLoader,
+        isInteractiveScript,
       });
 
       this.childProcess = child;
@@ -121,7 +123,12 @@ class Interface extends React.PureComponent {
   }
 
   render() {
-    const { commandName, isLoading, commandsList, withLoader } = this.state;
+    const {
+      commandName,
+      isLoading,
+      commandsList,
+      isInteractiveScript,
+    } = this.state;
 
     return (
       <>
@@ -146,6 +153,7 @@ class Interface extends React.PureComponent {
           </Box>
         )}
         {!commandName && <Text bold>Выберите команду</Text>}
+
         {!commandName && (
           <SelectInput
             items={commandsList}
@@ -153,7 +161,7 @@ class Interface extends React.PureComponent {
           />
         )}
 
-        {commandName && withLoader && isLoading && (
+        {commandName && !isInteractiveScript && isLoading && (
           <Box>
             <Text bold>Выполняется команда: {commandName}</Text>
             <Box width="100%">
