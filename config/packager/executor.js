@@ -20,8 +20,6 @@ const fromFolder = path.join(
   configFolderPrefix,
 );
 
-console.log('fromFolder', fromFolder);
-
 const toFolder = path.join(process.cwd(), 'cli');
 const arrayToCopy = [{ from: fromFolder, to: toFolder }];
 
