@@ -1,0 +1,54 @@
+{
+  "name": "@wildberries/boilerplate-cli-packager",
+  "version": "0.2.40",
+  "description": "boilerplate cli-executor",
+  "scripts": {
+    "lint": "npx eslint ./config/packager --ext .js --fix",
+    "commit": "git add . && git commit --no-edit",
+    "release": "npm link && npm run commit && git push && npm publish --access=public",
+    "beta": "npm link && npm run commit && git push && npm publish --tag beta --access=public"
+  },
+  "license": "MIT",
+  "dependencies": {
+    "@mihanizm56/node-file-copier": "0.0.5",
+    "mkdirp-promise": "5.0.1",
+    "util": "0.12.2"
+  },
+  "devDependencies": {
+    "@commitlint/cli": "8.2.0",
+    "babel-eslint": "10.1.0",
+    "commitizen": "4.0.4",
+    "cz-customizable": "6.2.0",
+    "eslint": "6.8.0",
+    "eslint-config-airbnb-base": "14.1.0",
+    "eslint-config-prettier": "6.5.0",
+    "eslint-import-resolver-alias": "1.1.2",
+    "eslint-loader": "3.0.2",
+    "eslint-plugin-import": "2.18.2",
+    "eslint-plugin-prettier": "3.1.1",
+    "eslint-plugin-security": "1.4.0",
+    "husky": "3.0.9",
+    "prettier": "1.18.2"
+  },
+  "config": {
+    "commitizen": {
+      "path": "node_modules/cz-customizable"
+    },
+    "cz-customizable": {
+      "config": "config/git/commitizen.js"
+    }
+  },
+  "files": [
+    "lib/",
+    "config/packager",
+    "node_modules/@mihanizm56/node-file-copier/"
+  ],
+  "husky": {
+    "hooks": {
+      "commit-msg": "commitlint -E HUSKY_GIT_PARAMS -g config/git/commitlint.js",
+      "pre-commit": "npm run lint && git add .",
+      "prepare-commit-msg": "node ./config/git/prepare-commit.js"
+    }
+  },
+  "bin": "config/packager/executor.js"
+}

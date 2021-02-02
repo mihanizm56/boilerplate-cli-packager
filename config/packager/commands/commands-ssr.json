@@ -1,0 +1,18 @@
+{
+  "scripts": {
+    "setup": "node ./cli/prepare-app/index.js",
+    "wb": "node ./cli/command-app/index.js"
+  },
+  "devDependencies": {
+    "import-jsx": "3.1.0",
+    "ink": "2.7.0",
+    "ink-big-text": "1.0.1",
+    "ink-divider": "2.0.1",
+    "ink-gradient": "1.0.0",
+    "ink-select-input": "3.1.2",
+    "ink-spinner": "3.0.1",
+    "ink-text-input": "3.2.2",
+    "listr2": "3.2.2",
+    "enquirer": "2.3.6"
+  }
+}
