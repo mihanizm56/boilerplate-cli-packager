@@ -13,6 +13,7 @@
     "ink-spinner": "3.0.1",
     "ink-text-input": "3.2.2",
     "listr2": "3.2.2",
-    "enquirer": "2.3.6"
+    "enquirer": "2.3.6",
+    "@mihanizm56/deploy-tag": "0.0.6"
   }
 }
