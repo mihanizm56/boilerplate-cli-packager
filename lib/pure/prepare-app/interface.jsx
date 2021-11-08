@@ -41,6 +41,7 @@ class Interface extends React.Component {
     makeEnvs([
       { label: 'BROWSER', value: 'none' },
       { label: 'PUBLIC_URL', value: '/' },
+      { label: 'SKIP_PREFLIGHT_CHECK', value: 'true' },
     ]);
 
     this.handleExit();
