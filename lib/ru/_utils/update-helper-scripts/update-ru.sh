@@ -9,9 +9,9 @@ rm -fr .env
 
 npx @wildberries/boilerplate-config-packager &&
 npx @wildberries/boilerplate-cli-packager &&
-npm i &&
+npm i -f &&
 npx npm-force-resolutions &&
-npm i
+npm i -f 
 
 npm run setup
 
