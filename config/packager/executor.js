@@ -28,7 +28,7 @@ const copier = new Copier({ arrayToCopy });
 const runPackage = async () => {
   try {
     console.log('installing');
-    await exec('npm install @wildberries/boilerplate-cli-packager');
+    await exec('npm install --force @wildberries/boilerplate-cli-packager');
 
     console.log('generate files');
     copier.activate();
