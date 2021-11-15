@@ -15,9 +15,9 @@ sed -i --expression "s@${OLD_BABEL_CONFIG}@$NEW_BABEL_CONFIG@" $PACKAGE_JSON_PAT
 
 npx @wildberries/boilerplate-config-packager --euro &&
 npx @wildberries/boilerplate-cli-packager --euro &&
-npm i -f &&
+npm i --no-audit --legacy-peer-deps &&
 npx npm-force-resolutions &&
-npm i -f
+npm i --no-audit --legacy-peer-deps
 
 npm run setup
 

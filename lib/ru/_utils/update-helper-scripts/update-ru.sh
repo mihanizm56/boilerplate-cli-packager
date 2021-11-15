@@ -9,9 +9,9 @@ rm -fr .env
 
 npx @wildberries/boilerplate-config-packager &&
 npx @wildberries/boilerplate-cli-packager &&
-npm i -f &&
+npm i --no-audit --legacy-peer-deps &&
 npx npm-force-resolutions &&
-npm i -f 
+npm i --no-audit --legacy-peer-deps
 
 npm run setup
 
