@@ -28,7 +28,9 @@ const copier = new Copier({ arrayToCopy });
 const runPackage = async () => {
   try {
     console.log('installing');
-    await exec('npm install --force @wildberries/boilerplate-cli-packager');
+    await exec(
+      'npm install --no-audit --legacy-peer-deps @wildberries/boilerplate-cli-packager',
+    );
 
     console.log('generate files');
     copier.activate();
@@ -37,7 +39,9 @@ const runPackage = async () => {
     await packageJsonPatch(configFolderPrefix);
 
     console.log('uninstalling');
-    await exec('npm uninstall -f @wildberries/boilerplate-cli-packager');
+    await exec(
+      'npm uninstall --no-audit --legacy-peer-deps @wildberries/boilerplate-cli-packager',
+    );
   } catch (error) {
     console.log('error when executing the package', error);
     process.exit(1);
