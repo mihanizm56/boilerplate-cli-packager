@@ -70,10 +70,7 @@ class Interface extends React.Component {
 
     // installAdditionalPackages();
 
-    makeEnvs([
-      { label: 'BROWSER', value: 'none' },
-      { label: 'SKIP_PREFLIGHT_CHECK', value: 'true' },
-    ]);
+    makeEnvs([{ label: 'BROWSER', value: 'none' }]);
 
     this.handleExit();
   }
