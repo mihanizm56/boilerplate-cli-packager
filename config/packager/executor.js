@@ -29,7 +29,7 @@ const runPackage = async () => {
   try {
     console.log('installing');
     await exec(
-      'npm install --no-audit --legacy-peer-deps @wildberries/boilerplate-cli-packager',
+      'npm install --force --no-audit --legacy-peer-deps @wildberries/boilerplate-cli-packager',
     );
 
     console.log('generate files');
