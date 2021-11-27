@@ -39,7 +39,9 @@ const runPackage = async () => {
     await packageJsonPatch(configFolderPrefix);
 
     console.log('uninstalling');
-    await exec('npm uninstall --force @wildberries/boilerplate-cli-packager');
+    await exec(
+      'npm uninstall --force --no-audit --legacy-peer-deps @wildberries/boilerplate-cli-packager',
+    );
   } catch (error) {
     console.log('error when executing the package', error);
     process.exit(1);
