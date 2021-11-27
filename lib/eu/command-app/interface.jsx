@@ -3,6 +3,7 @@ const { Box, Text, Color } = require('ink');
 const BigText = require('ink-big-text');
 const SelectInput = require('ink-select-input').default;
 const Spinner = require('ink-spinner').default;
+const kill = require('tree-kill');
 const { devServerLog } = require('../../utils/dev-server-logger');
 const { scriptExecute } = require('../_utils/cli-utils/run-executor-script');
 const { processKiller } = require('../_utils/cli-utils/process-killer');
@@ -38,16 +39,16 @@ class Interface extends React.PureComponent {
     this.handleOpenExtraList = this.handleOpenExtraList.bind(this);
   }
 
+  componentDidCatch(error) {
+    devServerLog('error', error);
+  }
+
   async componentWillUnmount() {
     if (Boolean(this.childProcess)) {
-      process.kill(-this.childProcess.pid);
+      kill(-this.childProcess.pid);
     }
 
     await processKiller();
-  }
-
-  componentDidCatch(error) {
-    devServerLog('error', error);
   }
 
   async handleselectActActionion({
@@ -123,12 +124,8 @@ class Interface extends React.PureComponent {
   }
 
   render() {
-    const {
-      commandName,
-      isLoading,
-      commandsList,
-      isInteractiveScript,
-    } = this.state;
+    const { commandName, isLoading, commandsList, isInteractiveScript } =
+      this.state;
 
     return (
       <>
