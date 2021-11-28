@@ -29,7 +29,7 @@ const runPackage = async () => {
   try {
     console.log('installing');
     await exec(
-      'npm install --force --no-audit --legacy-peer-deps @wildberries/boilerplate-cli-packager',
+      'npm install --no-audit --legacy-peer-deps @wildberries/boilerplate-cli-packager',
     );
 
     console.log('generate files');
@@ -40,7 +40,7 @@ const runPackage = async () => {
 
     console.log('uninstalling');
     await exec(
-      'npm uninstall --force --no-audit --legacy-peer-deps @wildberries/boilerplate-cli-packager',
+      'npm uninstall --no-audit --legacy-peer-deps @wildberries/boilerplate-cli-packager',
     );
   } catch (error) {
     console.log('error when executing the package', error);
