@@ -61,6 +61,7 @@ class Interface extends React.Component {
       { label: 'NAMESPACE', value: namespace },
       { label: 'BROWSER', value: 'none' },
       { label: 'PUBLIC_URL', value: '/' },
+      { label: 'EXTEND_ESLINT', value: 'true' },
     ]);
 
     this.handleExit();

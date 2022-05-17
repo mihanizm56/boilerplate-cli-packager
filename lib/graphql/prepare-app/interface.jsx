@@ -41,6 +41,7 @@ class Interface extends React.Component {
     makeEnvs([
       { label: 'BROWSER', value: 'none' },
       { label: 'PUBLIC_URL', value: '/' },
+      { label: 'EXTEND_ESLINT', value: 'true' },
     ]);
 
     this.handleExit();

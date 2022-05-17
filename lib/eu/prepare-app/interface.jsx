@@ -70,7 +70,10 @@ class Interface extends React.Component {
 
     // installAdditionalPackages();
 
-    makeEnvs([{ label: 'BROWSER', value: 'none' }]);
+    makeEnvs([
+      { label: 'BROWSER', value: 'none' },
+      { label: 'EXTEND_ESLINT', value: 'true' },
+    ]);
 
     this.handleExit();
   }

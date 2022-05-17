@@ -67,6 +67,7 @@ class Interface extends React.Component {
       { label: 'IP_LIMIT', value: ipLimitEnv },
       { label: 'BROWSER', value: 'none' },
       { label: 'PUBLIC_URL', value: '/' },
+      { label: 'EXTEND_ESLINT', value: 'true' },
     ]);
 
     this.handleExit();
