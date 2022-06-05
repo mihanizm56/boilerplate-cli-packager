@@ -13,6 +13,4 @@ npm i --no-audit --legacy-peer-deps &&
 npx npm-force-resolutions &&
 npm i --no-audit --legacy-peer-deps
 
-npm run setup
-
 rm -rf temp.sh
