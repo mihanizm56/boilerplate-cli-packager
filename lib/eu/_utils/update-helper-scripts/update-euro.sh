@@ -19,7 +19,7 @@ npm i &&
 npx npm-force-resolutions &&
 npm i
 
-nox husky install
+npx husky install
 
 # npm run setup
 
