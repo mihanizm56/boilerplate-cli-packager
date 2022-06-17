@@ -19,6 +19,8 @@ npm i &&
 npx npm-force-resolutions &&
 npm i
 
-npm run setup
+nox husky install
+
+# npm run setup
 
 rm -rf temp.sh
