@@ -3,7 +3,6 @@
 rm -fr config &&
 rm -fr cli &&
 rm -fr integration-tests &&
-rm -fr node_modules &&
 
 npm uninstall -D \ 
     @typescript-eslint/eslint-plugin \
@@ -32,6 +31,8 @@ npm uninstall \
     mini-css-extract-plugin \
     compress \
     react-dev-utils &&
+
+rm -fr node_modules &&
 
 npx @wildberries/boilerplate-config-packager --euro &&
 npx @wildberries/boilerplate-cli-packager --euro &&
