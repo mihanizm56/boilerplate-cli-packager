@@ -12,8 +12,8 @@ npm uninstall -D \
     eslint-config-airbnb \
     eslint-config-prettier \
     eslint-config-react-app \
-    eslint-import-resolver-alias
-    eslint-import-resolver-typescript
+    eslint-import-resolver-alias \
+    eslint-import-resolver-typescript \
     eslint-loader \
     eslint-plugin-css-modules \
     eslint-plugin-flowtype \
