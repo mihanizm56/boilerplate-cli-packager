@@ -27,23 +27,23 @@ const copier = new Copier({ arrayToCopy });
 
 const runPackage = async () => {
   try {
-    console.log('installing');
+    console.log('[CLI]: installing');
     await exec(
       'npm install --force --no-audit --legacy-peer-deps @wildberries/boilerplate-cli-packager',
     );
 
-    console.log('generate files');
+    console.log('[CLI]: generate files');
     copier.activate();
 
-    console.log('update package.json');
+    console.log('[CLI]: update package.json');
     await packageJsonPatch(configFolderPrefix);
 
-    console.log('uninstalling');
+    console.log('[CLI]: uninstalling');
     await exec(
       'npm uninstall --force --no-audit --legacy-peer-deps @wildberries/boilerplate-cli-packager',
     );
   } catch (error) {
-    console.log('error when executing the package', error);
+    console.log('[CLI]: error when executing the package', error);
     process.exit(1);
   }
 };
