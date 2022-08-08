@@ -27,6 +27,7 @@ const copier = new Copier({ arrayToCopy });
 
 const runPackage = async () => {
   try {
+    console.log('');
     console.log('[CLI]: installing');
     await exec(
       'npm install --force --no-audit --legacy-peer-deps @wildberries/boilerplate-cli-packager',
