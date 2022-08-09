@@ -1,6 +1,6 @@
 {
   "name": "@wildberries/boilerplate-cli-packager",
-  "version": "0.3.52",
+  "version": "0.3.53",
   "description": "boilerplate cli-executor",
   "scripts": {
     "lint": "npx eslint ./config/packager --ext .js --fix",
