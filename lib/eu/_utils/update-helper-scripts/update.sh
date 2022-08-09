@@ -11,6 +11,7 @@ npm uninstall compression-webpack-plugin customize-cra-react-refresh  mini-css-e
 npx @wildberries/boilerplate-config-packager --euro &&
 npx @wildberries/boilerplate-cli-packager --euro &&
 rm -fr node_modules &&
+rm -fr package-lock.json &&
 npm i --legacy-peer-deps --no-audit &&
 npx npm-force-resolutions &&
 npm i --legacy-peer-deps --no-audit
