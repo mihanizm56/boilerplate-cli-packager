@@ -15,6 +15,6 @@
     "listr2": "3.2.2",
     "enquirer": "2.3.6",
     "tree-kill": "1.2.2",
-    "@mihanizm56/deploy-tag": "0.0.6"
+    "@mihanizm56/deploy-tag": "0.0.7"
   }
 }

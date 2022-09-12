@@ -15,6 +15,6 @@
     "js-yaml": "3.13.1",
     "listr2": "3.2.2",
     "enquirer": "2.3.6",
-    "@mihanizm56/deploy-tag": "0.0.6"
+    "@mihanizm56/deploy-tag": "0.0.7"
   }
 }
