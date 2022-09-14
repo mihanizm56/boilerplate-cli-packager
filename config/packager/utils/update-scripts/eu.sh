@@ -6,7 +6,7 @@ rm -fr integration-tests &&
 
 npm uninstall --legacy-peer-deps --no-audit -D node-fetch on-headers helmet @typescript-eslint/eslint-plugin npm-audit-resolver source-map-explorer @typescript-eslint/parser eslint eslint-config-airbnb eslint-config-prettier eslint-config-react-app eslint-import-resolver-alias eslint-import-resolver-typescript eslint-loader   eslint-plugin-css-modules eslint-plugin-flowtype eslint-plugin-import eslint-plugin-jsx-a11y  eslint-plugin-prettier eslint-plugin-react eslint-plugin-react-hooks   eslint-plugin-security     eslint-plugin-unused-imports prettier &&
 
-npm uninstall --legacy-peer-deps --no-audit on-headers helmet npm-audit-resolver node-fetch source-map-explorer compression-webpack-plugin customize-cra-react-refresh  mini-css-extract-plugin compress compression react-dev-utils &&
+npm uninstall --legacy-peer-deps --no-audit node-sass on-headers helmet npm-audit-resolver node-fetch source-map-explorer compression-webpack-plugin customize-cra-react-refresh  mini-css-extract-plugin compress compression react-dev-utils &&
 
 npx @wildberries/boilerplate-config-packager --euro &&
 npx @wildberries/boilerplate-cli-packager --euro &&
