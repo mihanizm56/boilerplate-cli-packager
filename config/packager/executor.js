@@ -14,7 +14,7 @@ const configFolderPrefix = getConfigFolderPrefix(flags);
 const fromFolder = path.join(
   process.cwd(),
   'node_modules',
-  '@wildberries',
+  '@mihanizm56',
   'boilerplate-cli-packager',
   'lib',
   configFolderPrefix,
