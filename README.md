@@ -1,11 +1,11 @@
-# @wildberries/boilerplate-cli-packager
+# @mihanizm56/boilerplate-cli-packager
 
 ### Commands
 
 <b>To make the cli-package-executor runs into the root folder</b><br>
 
 ```javascript
-npx @wildberries/boilerplate-cli-packager
+npx @mihanizm56/boilerplate-cli-packager
 ```
 
 <b>This execution will do the steps:</b>

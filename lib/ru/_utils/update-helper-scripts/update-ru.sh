@@ -7,8 +7,8 @@ rm -fr k8s
 rm -fr integration-tests
 rm -fr .env
 
-npx @wildberries/boilerplate-config-packager &&
-npx @wildberries/boilerplate-cli-packager &&
+npx @mihanizm56/boilerplate-config-packager &&
+npx @mihanizm56/boilerplate-cli-packager &&
 npm i --no-audit --legacy-peer-deps &&
 npx npm-force-resolutions &&
 npm i --no-audit --legacy-peer-deps

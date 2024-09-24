@@ -9,8 +9,8 @@ npm uninstall --legacy-peer-deps --no-audit -D editorconfig-checker node-fetch o
 
 npm uninstall --legacy-peer-deps --no-audit node-sass http-proxy-middleware on-headers helmet npm-audit-resolver node-fetch source-map-explorer compression-webpack-plugin customize-cra-react-refresh  mini-css-extract-plugin compress compression react-dev-utils &&
 
-npx @wildberries/boilerplate-config-packager --euro &&
-npx @wildberries/boilerplate-cli-packager --euro &&
+npx @mihanizm56/boilerplate-config-packager --euro &&
+npx @mihanizm56/boilerplate-cli-packager --euro &&
 rm -fr node_modules &&
 rm -fr package-lock.json &&
 npm i --legacy-peer-deps --no-audit
