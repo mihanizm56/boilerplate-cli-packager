@@ -15,11 +15,11 @@
     "util": "0.12.2"
   },
   "devDependencies": {
-    "@commitlint/cli": "8.2.0",
+    "@commitlint/cli": "20.1.0",
     "babel-eslint": "10.1.0",
     "commitizen": "4.0.4",
     "cz-customizable": "6.2.0",
-    "eslint": "6.8.0",
+    "eslint": "9.39.1",
     "eslint-config-airbnb-base": "14.1.0",
     "eslint-config-prettier": "6.5.0",
     "eslint-import-resolver-alias": "1.1.2",
@@ -27,7 +27,7 @@
     "eslint-plugin-import": "2.18.2",
     "eslint-plugin-prettier": "3.1.1",
     "eslint-plugin-security": "1.4.0",
-    "husky": "3.0.9",
+    "husky": "9.1.7",
     "prettier": "1.18.2"
   },
   "config": {
